@@ -16,7 +16,7 @@ import hashlib
 import json
 import os
 import random
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from decimal import ROUND_HALF_EVEN, ROUND_HALF_UP, Context, Decimal, localcontext
 
 from . import money
@@ -38,7 +38,7 @@ AMOUNT_RANGE = {"USD": (200, 20000), "EUR": (200, 18000), "GBP": (200, 15000),
                 "KZT": (100000, 9000000), "JPY": (30000, 3000000)}
 COMPANY_OFFSETS = [5, 6, 3, -5, 1, -3, 8]  # без 0: дата в UTC и локальная должны расходиться
 DOC_OFFSETS = [0, 1, 3, 5, 6, 8, -3, -5]
-SERVICES = ["Consulting", "Hosting", "Licence", "Maintenance", "Delivery", "Design work", "Training"]
+SERVICES = ["Consulting", "Hosting", "Licence", "Maintenance", "Delivery", "Design work", "Training", "Support"]
 
 LEDGER_COLUMNS = ["row_id", "timestamp", "account", "debit_minor", "credit_minor",
                   "currency", "entity_id", "invoice_id", "payment_id"]
@@ -63,7 +63,7 @@ def default_config() -> dict:
         "interactions": [],
         "distractors": {"split_payments": 2, "refunds": 2, "recurring": 2, "deposits": 2,
                         "tz_boundary": 3, "fx_clean_near_midnight": 2, "repeated_amounts": 2,
-                        "multi_invoice_payments": 2},
+                        "multi_invoice_payments": 2, "fx_partial": 2},
         "variant": {"id_salt": "", "shuffle": False},
     }
 
@@ -152,11 +152,14 @@ class _Builder:
     def __init__(self, seed: int, cfg: dict):
         self.cfg = cfg
         hist_key = canon({"v": GEN_VERSION, "seed": seed, "cfg": {k: v for k, v in cfg.items() if k != "variant"}})
-        pres_key = hist_key + "|pres|" + canon(cfg["variant"])
-        # Секрет проверяющего (переменная окружения) не даёт восстановить seed перебором по episode_id.
-        # На сами данные секрет не влияет.
+        # Секрет проверяющего (переменная окружения) входит в ключ всех случайных чисел. Без него
+        # агент не восстановит seed ни по episode_id, ни перебором по открытым данным: генератор открыт,
+        # но без секрета он строит другие компании. Одинаковые seed + config + секрет дают те же данные.
         secret = os.environ.get("AUDIT_ENV_SECRET", "")
-        self.episode_id = "ep-" + _digest(hist_key + canon(cfg["variant"]) + "|" + secret)[:12]
+        if secret:
+            hist_key += "|secret:" + _digest(secret)
+        pres_key = hist_key + "|pres|" + canon(cfg["variant"])
+        self.episode_id = "ep-" + _digest(hist_key + canon(cfg["variant"]))[:12]
         self.h = random.Random(int(_digest(hist_key)[:16], 16))
         self.p = random.Random(int(_digest(pres_key)[:16], 16))
         self.seed = seed
@@ -190,8 +193,12 @@ class _Builder:
         """Обычные записи не ставим ближе 90 минут к границе периода: сторона должна быть однозначной."""
         for boundary in (self.start, self.end):
             if abs(ts - boundary) < timedelta(minutes=90):
-                ts = boundary + timedelta(hours=2, minutes=self.h.randint(0, 59))
+                ts = boundary + timedelta(seconds=self.h.randint(2 * 3600, 3 * 3600))
         return ts
+
+    def secs(self, low_hours, high_hours):
+        """Случайный сдвиг с точностью до секунды: внесённые ошибки не должны выделяться «ровным часом»."""
+        return timedelta(seconds=self.h.randint(int(low_hours * 3600), int(high_hours * 3600)))
 
     def inside_ts(self, from_start_days, to_end_days):
         lo = self.start + timedelta(days=from_start_days)
@@ -210,22 +217,47 @@ class _Builder:
         exp = money.EXPONENT[cur]
         return self.h.randint(low, high) * 10 ** exp + (self.h.randint(0, 99) if exp == 2 else 0)
 
-    def make_lines(self, total, label):
+    def make_lines(self, total, issued):
+        """Строки счёта. Шаблоны описаний общие для всех счетов (обычных, ловушек и ошибок),
+        чтобы вид текста не выдавал, к какой группе относится счёт."""
+        local = issued.astimezone(self.company_tz)
+        label, week = local.strftime("%Y-%m"), local.isocalendar()[1]
         count = self.h.randint(1, 3)
         cuts = sorted(self.h.sample(range(1, total), count - 1))  # разные точки: нулевых строк не будет
         parts = [b - a for a, b in zip([0] + cuts, cuts + [total])]
-        services = self.h.sample(SERVICES, count)
-        return [{"description": f"{svc} {label}", "quantity": self.h.randint(1, 5), "amount_minor": amount}
-                for svc, amount in zip(services, parts)]
+        lines = []
+        for svc, amount in zip(self.h.sample(SERVICES, count), parts):
+            style = self.h.random()
+            if style < 0.6:
+                text = f"{svc} {label}"
+            elif style < 0.8:
+                text = f"{svc}, week {week}"
+            else:
+                self.serial += 1
+                text = f"{svc} order {self.serial}"
+            lines.append({"description": text, "quantity": self.h.randint(1, 5), "amount_minor": amount})
+        return lines
+
+    def other_lines(self, total, issued, avoid):
+        """Строки, гарантированно отличные от avoid (законные одинаковые суммы не должны стать дублем)."""
+        lines = self.make_lines(total, issued)
+        while lines == avoid:
+            lines = self.make_lines(total, issued)
+        return lines
+
+    def daytime_ts(self, local_day):
+        """Мгновение днём по местному времени (8:00-20:00), с точностью до секунды."""
+        start = datetime(local_day.year, local_day.month, local_day.day, tzinfo=self.company_tz)
+        return self.clear_of_boundary((start + self.secs(8, 20)).astimezone(UTC))
 
     def mismatch_ts(self, local_day):
-        """Мгновение, у которого локальная дата и дата в UTC разные."""
+        """Мгновение, у которого локальная дата и дата в UTC разные (с точностью до секунды)."""
         hours = int(self.company_tz.utcoffset(None).total_seconds() // 3600)
         if hours > 0:
-            minutes = self.h.randint(10, hours * 60 - 10)
+            seconds = self.h.randint(600, hours * 3600 - 600)
         else:
-            minutes = self.h.randint(24 * 60 + hours * 60 + 10, 24 * 60 - 10)
-        ts = datetime(local_day.year, local_day.month, local_day.day, tzinfo=self.company_tz) + timedelta(minutes=minutes)
+            seconds = self.h.randint((24 + hours) * 3600 + 600, 24 * 3600 - 600)
+        ts = datetime(local_day.year, local_day.month, local_day.day, tzinfo=self.company_tz) + timedelta(seconds=seconds)
         ts = ts.astimezone(UTC)
         assert tu.fx_date(ts, "company_date", self.company_tz) != tu.fx_date(ts, "utc_date", self.company_tz)
         return ts
@@ -258,21 +290,18 @@ class _Builder:
         cur = self.entities[entity]["currency"]
         total = total if total is not None else self.rand_total(cur)
         n = len(self.invoices)
-        label = issued.astimezone(self.company_tz).strftime("%Y-%m")
         inv = {"key": f"inv:{n}", "doc": f"doc:inv:{n}", "entity": entity, "issued": issued, "currency": cur,
-               "total": total, "lines": lines if lines is not None else self.make_lines(total, label),
+               "total": total, "lines": lines if lines is not None else self.make_lines(total, issued),
                "post_ts": None, "tag": "ordinary"}
         inv.update(extra)
         self.invoices.append(inv)
         self.inv_by_key[inv["key"]] = inv
         return inv
 
-    def add_payment(self, ts, cur, amount, refs, entity, tag="ordinary", plan=None, solve_for=None):
-        """solve_for: ключ счёта; сумма платежа в чужой валюте пересчитывается перед проводками,
-        когда таблица курсов уже окончательная (плантеры могут поправить отдельные даты)."""
+    def add_payment(self, ts, cur, amount, refs, entity, tag="ordinary", plan=None):
         n = len(self.payments)
         pay = {"key": f"pay:{n}", "doc": f"doc:pay:{n}", "ts": ts, "currency": cur, "amount": amount,
-               "refs": refs, "entity": entity, "plan": plan, "tag": tag, "solve_for": solve_for}
+               "refs": refs, "entity": entity, "plan": plan, "tag": tag}
         self.payments.append(pay)
         self.pay_by_key[pay["key"]] = pay
         return pay
@@ -300,7 +329,7 @@ class _Builder:
         if inv["currency"] == self.base and self.h.random() < 0.18:
             cur = self.h.choice(self.foreign)
             amount = self.pay_amount_for(inv["total"], cur, ts)
-            self.add_payment(ts, cur, amount, [(inv["key"], amount)], inv["entity"], solve_for=inv["key"])
+            self.add_payment(ts, cur, amount, [(inv["key"], amount)], inv["entity"])
             return
         cur, amount = inv["currency"], inv["total"]
         self.add_payment(ts, cur, amount, [(inv["key"], amount)], inv["entity"])
@@ -337,9 +366,10 @@ class _Builder:
             total = self.rand_total(self.entities[ent]["currency"])
             first = self.inside_ts(0, 22)
             for week in range(3):
-                issued = self.clear_of_boundary(first + timedelta(days=7 * week))
-                iso_week = issued.astimezone(self.company_tz).isocalendar()[1]
-                lines = [{"description": f"Weekly support, week {iso_week}", "quantity": 1, "amount_minor": total}]
+                service_at = first + timedelta(days=7 * week)  # неделя услуги: у каждого счёта своя
+                issued = self.clear_of_boundary(service_at + self.secs(-3, 3))  # время выставления чуть плавает
+                iso_week = service_at.astimezone(self.company_tz).isocalendar()[1]
+                lines = [{"description": f"Support, week {iso_week}", "quantity": 1, "amount_minor": total}]
                 inv = self.add_invoice(ent, issued, total=total, lines=lines, tag="recurring")
                 self.settle_ordinary(inv)
         for _ in range(counts["deposits"]):
@@ -350,7 +380,7 @@ class _Builder:
         for i in range(counts["tz_boundary"]):
             boundary = self.end if i % 2 == 0 else self.start
             sign = -1 if (i // 2) % 2 == 0 else 1
-            issued = (boundary + sign * timedelta(minutes=self.h.randint(10, 180))).replace(microsecond=0)
+            issued = (boundary + sign * self.secs(0.17, 3)).replace(microsecond=0)
             self.add_invoice(self.entity(), issued, tag="tz_boundary")
         for _ in range(counts["fx_clean_near_midnight"]):
             inv = self.add_invoice(self.entity(self.base), self.inside_ts(1, 12), tag="fx_clean")
@@ -358,27 +388,43 @@ class _Builder:
             ts = self.mismatch_ts(day)
             cur = self.h.choice(self.foreign)
             amount = self.pay_amount_for(inv["total"], cur, ts)
-            self.add_payment(ts, cur, amount, [(inv["key"], amount)], inv["entity"], tag="fx_clean", solve_for=inv["key"])
+            self.add_payment(ts, cur, amount, [(inv["key"], amount)], inv["entity"], tag="fx_clean")
+        for _ in range(counts["fx_partial"]):
+            # законно: часть счёта оплачена в чужой валюте, кредит AR заметно меньше суммы счёта
+            inv = self.add_invoice(self.entity(self.base), self.inside_ts(1, 14), tag="fx_partial")
+            cur = self.h.choice(self.foreign)
+            day = self.local_date(inv["issued"]) + timedelta(days=self.h.randint(1, 5))
+            ts = self.mismatch_ts(day) if self.h.random() < 0.5 else self.daytime_ts(day)
+            share = self.h.uniform(0.3, 0.8)
+            amount = self.pay_amount_for(int(inv["total"] * share), cur, ts)
+            self.add_payment(ts, cur, amount, [(inv["key"], amount)], inv["entity"], tag="fx_partial")
+            if self.h.random() < 0.6:  # остаток доплачен в базовой валюте
+                rest = inv["total"] - int(inv["total"] * share)
+                ts2 = self.clear_of_boundary((ts + timedelta(days=self.h.uniform(1, 5))).replace(microsecond=0))
+                self.add_payment(ts2, self.base, rest, [(inv["key"], rest)], inv["entity"], tag="fx_partial")
         for _ in range(counts["repeated_amounts"]):
             total = self.rand_total(self.base)
-            for _ in range(2):  # одна сумма; состав строк у каждого счёта свой (номер заказа), это не дубль
+            previous = None
+            for _ in range(2):  # одна сумма у двух счетов; состав строк разный, это не дубль
                 ent = self.entity(self.base)
-                self.serial += 1
-                lines = [{"description": f"{self.h.choice(SERVICES)} order {self.serial}", "quantity": 1, "amount_minor": total}]
-                self.settle_ordinary(self.add_invoice(ent, self.inside_ts(0, 2), total=total, lines=lines, tag="same_amount"))
+                issued = self.inside_ts(0, 2)
+                lines = self.other_lines(total, issued, previous)
+                previous = lines
+                self.settle_ordinary(self.add_invoice(ent, issued, total=total, lines=lines, tag="same_amount"))
             ent = self.entity()
             total2 = self.rand_total(self.entities[ent]["currency"])
             first = self.inside_ts(0, 16)
-            for shift in (0, 12):  # один клиент, одна сумма, разные услуги
-                issued = self.clear_of_boundary(first + timedelta(days=shift))
-                lines = [{"description": f"{self.h.choice(SERVICES)} job {shift}-{self.h.randint(100, 999)}",
-                          "quantity": 1, "amount_minor": total2}]
-                self.add_invoice(ent, issued, total=total2, lines=lines, tag="same_amount")
+            # один клиент, одна сумма, близкое время (как у дубля), но другие услуги
+            first_lines = self.make_lines(total2, first)
+            self.add_invoice(ent, first, total=total2, lines=first_lines, tag="same_amount")
+            second = self.clear_of_boundary(first + self.secs(2, 60))
+            self.add_invoice(ent, second, total=total2, lines=self.other_lines(total2, second, first_lines), tag="same_amount")
         for _ in range(counts["multi_invoice_payments"]):
             ent = self.entity()
             cur = self.entities[ent]["currency"]
             first = self.add_invoice(ent, self.inside_ts(0, 14), tag="multi")
-            second = self.add_invoice(ent, first["issued"] + timedelta(days=self.h.randint(1, 3)), tag="multi")
+            second_at = self.clear_of_boundary(first["issued"] + self.secs(20, 72))
+            second = self.add_invoice(ent, second_at, tag="multi")
             ts = self.clear_of_boundary((second["issued"] + timedelta(days=self.h.uniform(1, 5))).replace(microsecond=0))
             self.add_payment(ts, cur, first["total"] + second["total"],
                              [(first["key"], first["total"]), (second["key"], second["total"])], ent, tag="multi")
@@ -402,15 +448,15 @@ class _Builder:
     def plant_duplicate(self, cutoff=False, inter=None):
         ent = self.entity()
         if cutoff:
-            orig_at = self.end - timedelta(hours=self.h.randint(30, 60))
-            dup_at = self.end - timedelta(hours=self.h.randint(3, 20))
+            orig_at = self.end - self.secs(30, 60)
+            dup_at = self.end - self.secs(3, 20)
         else:
             orig_at = self.inside_ts(1, 8)
-            dup_at = orig_at + timedelta(hours=self.h.randint(2, 60))
+            dup_at = self.clear_of_boundary(orig_at + self.secs(2, 60))
         orig = self.add_invoice(ent, orig_at.replace(microsecond=0), tag="dup_original")
         extra = {}
         if cutoff:  # дубль проведён уже после конца периода
-            extra["post_ts"] = self.end + timedelta(hours=self.h.randint(3, 60))
+            extra["post_ts"] = self.end + self.secs(3, 60)
         dup = self.add_invoice(ent, dup_at.replace(microsecond=0), total=orig["total"],
                                lines=copy.deepcopy(orig["lines"]), tag="dup", dup_of=orig["key"], **extra)
         self.plants.append({"kind": "duplicate_invoice", "orig": orig["key"], "dup": dup["key"], "inter": inter})
@@ -422,17 +468,19 @@ class _Builder:
         if fx:
             hours = int(self.company_tz.utcoffset(None).total_seconds() // 3600)
             if boundary and hours > 0:  # платёж в первый день периода: счёт выставлен чуть раньше, в прошлом периоде
-                issued = (self.start - timedelta(hours=self.h.randint(30, 70))).replace(microsecond=0)
+                issued = (self.start - self.secs(30, 70)).replace(microsecond=0)
             else:
                 issued = self.inside_ts(2, 12)
             inv = self.add_invoice(self.entity(self.base), issued, tag="fx_error")
             cur = self.h.choice(self.foreign)
-            if boundary:
+            if boundary:  # сценарий «на границе»: дата по UTC и по поясу компании разные
                 day = self.local_date(self.start if hours > 0 else self.end - timedelta(seconds=1))
+                ts = self.mismatch_ts(day)
             else:
                 day = self.local_date(inv["issued"]) + timedelta(days=self.h.randint(1, 6))
-            ts = self.mismatch_ts(day)
-            amount = self.pay_amount_for(inv["total"], cur, ts)
+                ts = self.mismatch_ts(day) if self.h.random() < 0.5 else self.daytime_ts(day)
+            share = 1.0 if self.h.random() < 0.5 else self.h.uniform(0.3, 0.8)  # бывает и частичная оплата
+            amount = self.pay_amount_for(int(inv["total"] * share), cur, ts)
         else:
             inv = self.add_invoice(self.entity(), self.inside_ts(1, 14), tag="alloc_error")
             ts = self.clear_of_boundary((inv["issued"] + timedelta(days=self.h.uniform(1, 6))).replace(microsecond=0))
@@ -442,24 +490,34 @@ class _Builder:
             plan["mode"] = self.h.choice(["missing", "partial"])
             plan["fraction"] = self.h.uniform(0.3, 0.75)
         if fx:
-            _, key_ok = self.rate_for(cur, ts)
             good = Decimal(self.rate_for(cur, ts)[0])
-            if self.h.random() < 0.5:  # курс взят на «не ту» дату
-                wrong_key = (cur, tu.fx_date(ts, self.other_rule, self.company_tz))
-                if abs(Decimal(self.fx[wrong_key]) / good - 1) < Decimal("0.008"):
-                    factor = 1 + self.h.choice([-1, 1]) * self.h.uniform(0.01, 0.03)
-                    self.fx[wrong_key] = money.rate_str(good * Decimal(str(round(factor, 6))))
-                plan["wrong_rate"], plan["fx_variant"] = self.fx[wrong_key], "wrong_date"
+            wrong_date = self.pick_wrong_date(cur, ts, good)
+            if wrong_date and self.h.random() < 0.7:  # курс взят на «не ту» дату (реальный курс из fx.csv)
+                plan["wrong_rate"], plan["fx_variant"], plan["wrong_date"] = self.fx[(cur, wrong_date)], "wrong_date", wrong_date
             else:  # курс с опечаткой
                 factor = 1 + self.h.choice([-1, 1]) * self.h.uniform(0.01, 0.04)
                 plan["wrong_rate"], plan["fx_variant"] = money.rate_str(good * Decimal(str(round(factor, 6)))), "wrong_rate"
-        pay = self.add_payment(ts, cur, amount, [(inv["key"], amount)], inv["entity"], tag="payment_error", plan=plan,
-                               solve_for=inv["key"] if fx else None)
+        pay = self.add_payment(ts, cur, amount, [(inv["key"], amount)], inv["entity"], tag="payment_error", plan=plan)
         self.plants.append({"kind": "payment_plan", "pay": pay["key"], "alloc": alloc, "fx": fx, "inter": inter})
+
+    def pick_wrong_date(self, cur, ts, good):
+        """Дата, курс которой заметно (>= 0.8%) отличается от верного: дата по другому правилу или
+        одна из 7 предыдущих. Таблицу курсов не трогаем: в fx.csv не должно быть искусственных скачков."""
+        correct = tu.fx_date(ts, self.fx_rule, self.company_tz)
+        candidates = []
+        other = tu.fx_date(ts, self.other_rule, self.company_tz)
+        if other != correct:
+            candidates.append(other)
+        earlier = [(date.fromisoformat(correct) - timedelta(days=k)).isoformat() for k in range(1, 8)]
+        self.h.shuffle(earlier)
+        for day in candidates + earlier:
+            if abs(Decimal(self.fx[(cur, day)]) / good - 1) >= Decimal("0.008"):
+                return day
+        return None
 
     def plant_cutoff(self):
         variant = self.h.choice(["end_late", "end_early", "start_late", "start_early"])
-        shift = lambda a, b: timedelta(hours=self.h.randint(a, b))
+        shift = self.secs
         if variant == "end_late":      # счёт в периоде, проведён после конца
             issued, posted = self.end - shift(3, 40), self.end + shift(3, 60)
         elif variant == "end_early":   # счёт за периодом, проведён раньше конца
@@ -504,19 +562,29 @@ class _Builder:
             rows.append(("un", "UNAPPLIED", 0, unapplied, leg, None))
         return rows, {"leg": leg, "correct": correct, "booked": booked, "unapplied": unapplied, "fx_key": fx_key}
 
+    def posting_delay(self, issued):
+        """Законная задержка проводки счёта: обычно минуты, но бывает на часы и дни позже или раньше.
+        Главное правило: проводка остаётся в том же периоде, что и счёт. Поэтому «проводка не в момент
+        счёта» сама по себе ошибкой не является, нужно сравнивать периоды."""
+        if any(abs(issued - b) < timedelta(hours=1) for b in (self.start, self.end)):
+            return timedelta(0)
+        roll = self.h.random()
+        if roll < 0.6:
+            delay = timedelta(seconds=self.h.randint(0, 900))
+        elif roll < 0.88:
+            delay = self.secs(1, 72)       # проведён позже
+        else:
+            delay = -self.secs(1, 48)      # проведён заранее
+        side = tu.period_side(issued, self.start, self.end)
+        if tu.period_side(issued + delay, self.start, self.end) != side:
+            delay = timedelta(seconds=self.h.randint(0, 900))
+            if tu.period_side(issued + delay, self.start, self.end) != side:
+                delay = timedelta(0)
+        return delay
+
     def post_all(self):
         """Пишем проводки: фактические (с ошибками) и чистые (для проверки данных)."""
         self.rows, self.clean_rows = [], []
-        for pay in self.payments:  # курсы окончательные: досчитываем суммы платежей в чужой валюте
-            if pay["solve_for"]:
-                inv = self.inv_by_key[pay["solve_for"]]
-                pay["amount"] = self.pay_amount_for(inv["total"], pay["currency"], pay["ts"])
-                pay["refs"] = [(inv["key"], pay["amount"])]
-            plan = pay["plan"]
-            if plan and plan["fx"]:  # курс из плана должен заметно отличаться от верного
-                good = Decimal(self.rate_for(pay["currency"], pay["ts"])[0])
-                if abs(Decimal(plan["wrong_rate"]) / good - 1) < Decimal("0.008"):
-                    plan["wrong_rate"], plan["fx_variant"] = money.rate_str(good * Decimal("1.02")), "wrong_rate"
 
         def add(target, ts, account, debit, credit, cur, entity, inv, pay):
             row = {"key": f"row:{len(self.rows) + len(self.clean_rows)}", "ts": ts, "account": account,
@@ -525,8 +593,7 @@ class _Builder:
             return row["key"]
 
         for inv in self.invoices:
-            near = any(abs(inv["issued"] - b) < timedelta(hours=1) for b in (self.start, self.end))
-            clean_ts = inv["issued"] + timedelta(seconds=0 if near else self.h.randint(0, 900))
+            clean_ts = inv["issued"] + self.posting_delay(inv["issued"])
             actual_ts = inv["post_ts"] or clean_ts
             inv["_rows"] = {}
             for role, account, debit, credit in (("ar", "AR", inv["total"], 0), ("rev", "REVENUE", 0, inv["total"])):
@@ -586,27 +653,24 @@ class _Builder:
         assign(["DOC", "D"], [i["doc"] for i in self.invoices] + [x["doc"] for x in self.payments], 100000, 999999)
         assign(["PAY", "RCPT", "P"], [x["key"] for x in self.payments], 10000, 99999)
         assign(["JE", "L", "TX"], [r["key"] for r in self.rows], 1000000, 9999999)
-        for r in self.clean_rows:
-            r["_skip"] = True
         e = lambda key: None if key is None else ext.get(key, key)  # fx-ключи остаются как есть
 
         def stamp(ts):
             offset = self.company_tz if p.random() < 0.5 else timezone(timedelta(hours=p.choice(DOC_OFFSETS)))
             return ts.astimezone(offset).isoformat()
 
-        for r in self.rows:
-            r["_tb"] = p.random()
-        ledger = [{"row_id": e(r["key"]), "timestamp": stamp(r["ts"]), "account": r["account"],
-                   "debit_minor": r["debit"], "credit_minor": r["credit"], "currency": r["currency"],
-                   "entity_id": e(r["entity"]), "invoice_id": e(r["invoice"]), "payment_id": e(r["payment"])}
-                  for r in sorted(self.rows, key=lambda r: (r["ts"], r["_tb"]))]
-
         def ordered(items, time_key):
+            """По времени (ничьи случайно) или, при variant.shuffle, в случайном порядке."""
             for it in items:
                 it["_tb"] = p.random()
             if self.cfg["variant"]["shuffle"]:
                 return sorted(items, key=lambda it: it["_tb"])
             return sorted(items, key=lambda it: (it[time_key], it["_tb"]))
+
+        ledger = [{"row_id": e(r["key"]), "timestamp": stamp(r["ts"]), "account": r["account"],
+                   "debit_minor": r["debit"], "credit_minor": r["credit"], "currency": r["currency"],
+                   "entity_id": e(r["entity"]), "invoice_id": e(r["invoice"]), "payment_id": e(r["payment"])}
+                  for r in ordered(self.rows, "ts")]
 
         invoices = []
         for inv in ordered(self.invoices, "issued"):
@@ -628,7 +692,8 @@ class _Builder:
             "period_end": self.end.astimezone(self.company_tz).isoformat(),
             "timezone": tu.offset_text(self.company_tz),
             "currency_exponents": {c: money.EXPONENT[c] for c in sorted({self.base, *self.foreign})},
-            "counts": {"ledger_rows": len(ledger), "invoices": len(invoices), "payments": len(payments), "fx_rows": len(fx)},
+            "counts": {"ledger_rows": len(ledger), "documents": len(invoices) + len(payments), "invoices": len(invoices),
+                       "payments": len(payments), "fx_rows": len(fx)},
             "rounding": {"mode": self.rounding, "unit": "minor units of the target currency"},
             "files": ["ledger.csv", "invoices.jsonl", "payments.jsonl", "fx.csv", "policy.json"],
         }
@@ -642,6 +707,12 @@ class _Builder:
             "posting_rule": "Счёт: дебет AR и кредит REVENUE на total_minor. Платёж: дебет CASH на amount_minor, "
                             "кредит AR по каждой ссылке invoice_refs (в валюте счёта). Остаток уходит в UNAPPLIED.",
             "unapplied_rule": "UNAPPLIED законен только для платежа без invoice_refs (аванс).",
+            "posting_time_rule": "Проводку счёта могут сделать позже или раньше даты счёта. Ошибка только тогда, "
+                                 "когда счёт и его проводка попадают в разные периоды.",
+            "partial_payment_rule": "Счёт можно оплачивать частями, в том числе в другой валюте: остаток AR после "
+                                    "частичной оплаты не ошибка.",
+            "rounding_residual_rule": "При оплате в другой валюте возможен остаток или переплата AR из-за округления "
+                                      "до минимальной единицы валюты платежа; это не ошибка.",
             "duplicate_rule": "Дубль: тот же клиент, валюта, сумма и тот же состав line_items "
                               "(включая период услуги) в разных счетах.",
             "rounding": self.rounding,

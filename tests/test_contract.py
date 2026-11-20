@@ -126,14 +126,30 @@ class TickClock:
         return value
 
 
-def test_time_limit_truncates():
-    env = AuditEnv(clock=TickClock(35.0))  # шаг занимает 35 с: после двух шагов набегает 70 > 60
+def test_time_limit_truncates_on_the_step_that_crosses_it():
+    env = AuditEnv(clock=TickClock(25.0))  # reset и каждый шаг занимают по 25 с: 25, 50, 75 > 60
     env.reset(1, FULL)
     assert env.step(calc())[3] is False
-    assert env.step(calc())[3] is False
     obs, _, terminated, truncated, _ = env.step(calc())
+    assert truncated and not terminated and obs["error"]["code"] == "time_limit" and obs["result"] is None
+    report = env.final_report()
+    assert report["truncated"] and report["tp"] == 0 and report["steps"] == 2
+
+
+def test_a_submit_that_crosses_the_time_limit_is_truncated_with_an_empty_answer():
+    env = AuditEnv(clock=TickClock(25.0))
+    _, info = env.reset(1, CLEAN)
+    env.step(calc())
+    obs, reward, terminated, truncated, _ = env.step(submit(info["episode_id"], []))
     assert truncated and not terminated and obs["error"]["code"] == "time_limit"
-    assert env.final_report()["tp"] == 0
+    assert env.final_report()["truncated"]
+
+
+def test_generation_time_counts_toward_the_limit():
+    env = AuditEnv(clock=TickClock(61.0))  # одна генерация уже дольше 60 с
+    env.reset(1, FULL)
+    obs, _, _, truncated, _ = env.step(calc())
+    assert truncated and obs["error"]["code"] == "time_limit"
 
 
 def test_time_limit_counts_only_environment_time_not_agent_latency():

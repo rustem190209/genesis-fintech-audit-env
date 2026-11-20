@@ -1,10 +1,13 @@
 """Единая команда проверки: python check.py
 
 1. тесты (pytest);
-2. 20 открытых эпизодов: корректность данных и эталона, повторная генерация даёт те же байты;
+2. 20 открытых эпизодов: корректность данных и эталона, повторная генерация даёт те же байты
+   (в том же процессе и в отдельном процессе с другим PYTHONHASHSEED);
 3. четыре базовые политики и порядок их наград.
 Без сети, платных API и GPU. Код возврата 0 = всё в порядке.
 """
+import hashlib
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -22,7 +25,21 @@ def step(title):
     print(f"\n=== {title} ===", flush=True)
 
 
+def plan_digest() -> str:
+    """SHA-256 всех открытых и закрытых файлов 20 эпизодов плана."""
+    digest = hashlib.sha256()
+    for _, _, item in all_episodes():
+        ep = generate(item["seed"], item["config"])
+        for files in (ep.open_files(), ep.closed_files()):
+            for name in sorted(files):
+                digest.update(name.encode() + b"\0" + files[name].encode("utf-8"))
+    return digest.hexdigest()
+
+
 def main() -> int:
+    if "--digest" in sys.argv:  # служебный режим для проверки в отдельном процессе
+        print(plan_digest())
+        return 0
     failed = []
 
     step("1/3 Тесты")
@@ -43,6 +60,15 @@ def main() -> int:
     print(f"  проверено эпизодов: {len(all_episodes())}, с проблемами: {bad}")
     if bad:
         failed.append("эпизоды")
+    # воспроизводимость между процессами: другой PYTHONHASHSEED не должен менять ни байта
+    here = plan_digest()
+    env = dict(os.environ, PYTHONHASHSEED="12345")
+    other = subprocess.run([sys.executable, str(ROOT / "check.py"), "--digest"], cwd=ROOT, env=env,
+                           capture_output=True, text=True).stdout.strip()
+    same = here == other
+    print("  те же байты в отдельном процессе с другим PYTHONHASHSEED:", "да" if same else "НЕТ")
+    if not same:
+        failed.append("воспроизводимость между процессами")
 
     step("3/3 Базовые политики")
     reports = run_all()

@@ -15,8 +15,9 @@ calculator, submit. Свободного shell, SQL, файловой систе
 в том же процессе и держит объект env, он до них дотянется. Настоящая изоляция даёт только запуск
 среды отдельным процессом (audit_env.server): агент видит лишь ответы на команды.
 
-Лимит времени (60 с) считает только время работы самой среды внутри step. Задержки между вызовами
-(например, ответ языковой модели) не входят: иначе награда зависела бы от скорости агента.
+Лимит времени (60 с) считает время работы самой среды: генерацию в reset и обработку каждого step.
+Задержки между вызовами (например, ответ языковой модели) не входят: иначе награда зависела бы от
+скорости агента. Шаг, на котором лимит превышен, сразу усекает эпизод (truncated, пустой ответ).
 """
 import copy
 import time
@@ -78,6 +79,7 @@ class AuditEnv:
 
     # ------------------------------------------------------------ жизненный цикл
     def reset(self, seed: int = 0, config: dict | None = None):
+        began = self._clock()
         episode = generator.generate(seed, config)
         tables = {"ledger": episode.ledger,
                   "invoices": [{k: v for k, v in i.items() if k != "line_items"} for i in episode.invoices],
@@ -93,6 +95,7 @@ class AuditEnv:
         docs.update({p["doc_id"]: ("payment", p) for p in episode.payments})
         self._state = {"episode": episode, "tables": tables, "index": index, "docs": docs, "step": 0, "done": False,
                        "busy": 0.0, "evaluator": Evaluator(episode.truth), "report": None}
+        self._state["busy"] = self._clock() - began  # время генерации тоже входит в лимит эпизода
         obs = {"task": TASK, "manifest": copy.deepcopy(episode.manifest), "policy": copy.deepcopy(episode.policy),
                "tables": {name: len(rows) for name, rows in tables.items()},
                "step": 0, "budget_remaining": MAX_STEPS, "result": None, "error": None}
@@ -133,6 +136,11 @@ class AuditEnv:
                 report = state["evaluator"].grade_empty(step)
 
         state["busy"] += self._clock() - began
+        if not truncated and state["busy"] > TIME_LIMIT_S:
+            # лимит превышен на этом шаге (даже если это submit): эпизод усечён, ответ пустой
+            terminated, truncated = False, True
+            result, error = None, {"code": "time_limit", "message": "time limit reached"}
+            report = state["evaluator"].grade_empty(step)
         done = terminated or truncated
         if done:
             state["done"] = True

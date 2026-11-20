@@ -1,64 +1,64 @@
 {
-  "episode_id": "ep-ac4e27abb1a0",
+  "episode_id": "ep-c4f956873bfa",
   "issues": [
     {
       "affected_ids": [
-        "BILL-13558"
-      ],
-      "currency": "EUR",
-      "evidence_sets": [
-        [
-          "DOC-585804",
-          "JE-9545194"
-        ],
-        [
-          "DOC-585804",
-          "JE-9128239"
-        ]
-      ],
-      "expected_amount_minor": 1238227,
-      "issue_id": "ISS-01",
-      "tolerance_minor": 6191,
-      "type": "period_cutoff"
-    },
-    {
-      "affected_ids": [
-        "BILL-93828"
-      ],
-      "currency": "EUR",
-      "evidence_sets": [
-        [
-          "DOC-521786",
-          "JE-1533662"
-        ],
-        [
-          "DOC-521786",
-          "JE-1262168"
-        ]
-      ],
-      "expected_amount_minor": 869766,
-      "issue_id": "ISS-02",
-      "tolerance_minor": 4348,
-      "type": "period_cutoff"
-    },
-    {
-      "affected_ids": [
-        "BILL-99596"
+        "BILL-10966"
       ],
       "currency": "KZT",
       "evidence_sets": [
         [
-          "DOC-434036",
-          "JE-2751795"
+          "D-352101",
+          "JE-1164064"
         ],
         [
-          "DOC-434036",
-          "JE-5156113"
+          "D-352101",
+          "JE-3192325"
         ]
       ],
-      "expected_amount_minor": 882290978,
+      "expected_amount_minor": 428063431,
+      "issue_id": "ISS-01",
+      "tolerance_minor": 2140317,
+      "type": "period_cutoff"
+    },
+    {
+      "affected_ids": [
+        "BILL-11301"
+      ],
+      "currency": "JPY",
+      "evidence_sets": [
+        [
+          "D-700726",
+          "JE-8085392"
+        ],
+        [
+          "D-700726",
+          "JE-4332925"
+        ]
+      ],
+      "expected_amount_minor": 128616,
+      "issue_id": "ISS-02",
+      "tolerance_minor": 643,
+      "type": "period_cutoff"
+    },
+    {
+      "affected_ids": [
+        "BILL-50273"
+      ],
+      "currency": "USD",
+      "evidence_sets": [
+        [
+          "D-556557",
+          "JE-4241188"
+        ],
+        [
+          "D-556557",
+          "JE-1884783"
+        ]
+      ],
+      "expected_amount_minor": 877550,
       "issue_id": "ISS-03",
-      "tolerance_minor": 4411454,
+      "tolerance_minor": 4387,
       "type": "period_cutoff"
     }
   ],

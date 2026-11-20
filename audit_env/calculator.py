@@ -5,7 +5,7 @@ from decimal import Decimal, DecimalException, localcontext
 MAX_LEN = 200
 MAX_DIGITS = 30
 MAX_RESULT = Decimal(10) ** 15  # результат должен помещаться в 12 знаков после точки без потери
-_TOKEN = re.compile(r"\s*(?:(\d+(?:\.\d+)?)|(.))")
+_TOKEN = re.compile(r"\s*(?:([0-9]+(?:\.[0-9]+)?)|(.))")  # только цифры ASCII, без юникодных
 
 
 class CalcError(ValueError):

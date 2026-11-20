@@ -1,91 +1,92 @@
 {
-  "episode_id": "ep-e376d714bc63",
+  "episode_id": "ep-8f9b42074312",
   "issues": [
     {
       "affected_ids": [
-        "PAY-48007"
+        "RCPT-20271"
       ],
       "currency": "EUR",
       "evidence_sets": [
         [
-          "2026-03-10:USD:EUR",
-          "DOC-689774",
-          "L-5817802"
+          "2026-04-01:JPY:EUR",
+          "D-478061",
+          "L-4839788",
+          "L-9445241"
         ]
       ],
-      "expected_amount_minor": 14121,
+      "expected_amount_minor": 8544,
       "issue_id": "ISS-01",
-      "tolerance_minor": 70,
+      "tolerance_minor": 42,
       "type": "fx_error"
     },
     {
       "affected_ids": [
-        "PAY-66025"
+        "RCPT-46046"
       ],
       "currency": "EUR",
       "evidence_sets": [
         [
-          "2026-03-31:KZT:EUR",
-          "DOC-510972",
-          "L-7176235"
+          "2026-04-13:KZT:EUR",
+          "D-314315",
+          "L-9796317"
         ]
       ],
-      "expected_amount_minor": 11089,
+      "expected_amount_minor": 18040,
       "issue_id": "ISS-02",
-      "tolerance_minor": 55,
+      "tolerance_minor": 90,
       "type": "fx_error"
     },
     {
       "affected_ids": [
-        "PAY-91820"
+        "RCPT-95893"
       ],
       "currency": "EUR",
       "evidence_sets": [
         [
-          "2026-03-14:KZT:EUR",
-          "DOC-298702",
-          "L-9553476"
+          "2026-04-19:KZT:EUR",
+          "D-142668",
+          "L-4904182"
         ]
       ],
-      "expected_amount_minor": 52373,
+      "expected_amount_minor": 1117,
       "issue_id": "ISS-03",
-      "tolerance_minor": 261,
+      "tolerance_minor": 5,
       "type": "fx_error"
     },
     {
       "affected_ids": [
-        "PAY-66025"
+        "RCPT-20271"
       ],
       "currency": "EUR",
       "evidence_sets": [
         [
-          "DOC-510972",
-          "L-7176235"
+          "D-478061",
+          "L-4839788"
         ]
       ],
-      "expected_amount_minor": 987683,
+      "expected_amount_minor": 397811,
       "issue_id": "ISS-04",
-      "tolerance_minor": 4938,
+      "tolerance_minor": 1989,
       "type": "payment_allocation"
     },
     {
       "affected_ids": [
-        "BILL-36830"
+        "SI-27497"
       ],
-      "currency": "EUR",
+      "currency": "JPY",
       "evidence_sets": [
         [
-          "DOC-107552",
-          "L-7309718"
+          "D-524011",
+          "L-1833903"
         ],
         [
-          "DOC-107552",
-          "L-9511699"
+          "D-524011",
+          "L-1980707"
         ]
       ],
-      "expected_amount_minor": 83149,
+      "expected_amount_minor": 761357,
       "issue_id": "ISS-05",
-      "tolerance_minor": 415,
+      "tolerance_minor": 3806,
       "type": "period_cutoff"
     }
   ],

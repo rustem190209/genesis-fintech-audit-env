@@ -31,7 +31,8 @@ def main(argv=None) -> int:
                       "config": item["config"], "episode_id": ep.episode_id, "issues": len(ep.truth["issues"]),
                       "ledger_rows": len(ep.ledger), "documents": len(ep.invoices) + len(ep.payments)})
         print(f"{split}/{folder.name}: issues={len(ep.truth['issues'])} rows={len(ep.ledger)} docs={len(ep.invoices) + len(ep.payments)}")
-    (out / "index.json").write_text(json.dumps(index, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    # newline="\n": файл должен быть одинаковым байт в байт на Windows и Linux
+    (out / "index.json").write_text(json.dumps(index, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
     print(f"Готово: {len(index)} эпизодов в {out}")
     return 0
 

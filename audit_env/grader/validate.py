@@ -104,7 +104,8 @@ def _instant(text):
 def check_schema(ep) -> list:
     problems = []
     m = ep.manifest
-    counts = {"ledger_rows": len(ep.ledger), "invoices": len(ep.invoices), "payments": len(ep.payments), "fx_rows": len(ep.fx)}
+    counts = {"ledger_rows": len(ep.ledger), "documents": len(ep.invoices) + len(ep.payments),
+              "invoices": len(ep.invoices), "payments": len(ep.payments), "fx_rows": len(ep.fx)}
     if m["counts"] != counts:
         problems.append("manifest.counts do not match the files")
     if not 200 <= len(ep.ledger) <= 2000:

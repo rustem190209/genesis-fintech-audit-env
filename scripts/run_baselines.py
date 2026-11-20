@@ -49,9 +49,10 @@ def main(argv=None) -> int:
     out.mkdir(parents=True, exist_ok=True)
     with open(out / "trajectories.jsonl", "w", encoding="utf-8", newline="\n") as handle:
         reports = run_all(trajectories=handle)
-    (out / "baseline_results.json").write_text(json.dumps(reports, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+    (out / "baseline_results.json").write_text(json.dumps(reports, indent=1, sort_keys=True) + "\n", encoding="utf-8",
+                                               newline="\n")
     table = summary(reports)
-    (out / "baseline_results.md").write_text(table + "\n", encoding="utf-8")
+    (out / "baseline_results.md").write_text(table + "\n", encoding="utf-8", newline="\n")
     print(table)
     return 0
 

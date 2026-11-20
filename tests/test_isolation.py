@@ -120,14 +120,17 @@ def _server(*flags):
                             stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
-def test_out_of_process_server_keeps_the_evaluator_away_from_the_agent():
-    proc = _server("--mode", "closed")
+def test_out_of_process_server_keeps_the_evaluator_away_from_the_agent(tmp_path):
+    config = tmp_path / "config.json"
+    config.write_text(json.dumps(FULL), encoding="utf-8")
+    proc = _server("--seed", "3", "--config", str(config), "--mode", "closed", "--report", str(tmp_path / "r.json"))
     try:
-        reset = _talk(proc, {"cmd": "reset", "seed": 3, "config": FULL})
-        assert reset["observation"]["budget_remaining"] == 100
+        start = _talk(proc, {"cmd": "start"})
+        assert start["observation"]["budget_remaining"] == 100
+        assert "error" in _talk(proc, {"cmd": "reset", "seed": 1, "config": {}})  # агент не выбирает эпизод
         step = _talk(proc, {"cmd": "step", "action": calc("2*21")})
         assert step["observation"]["result"] == {"value": "42"}
-        submitted = _talk(proc, {"cmd": "step", "action": submit(reset["info"]["episode_id"], [])})
+        submitted = _talk(proc, {"cmd": "step", "action": submit(start["info"]["episode_id"], [])})
         assert submitted["terminated"] and submitted["reward"] == 0.0
         assert "error" in _talk(proc, {"cmd": "report"})  # агент отчёт не получит
         assert "error" in _talk(proc, {"cmd": "step", "action": calc()})  # эпизод окончен, но сервер жив
@@ -153,7 +156,7 @@ def test_harness_flag_exposes_the_report():
 
 @pytest.mark.parametrize("bad", ['{"cmd": "reset", "seed": "x"}', '[1,2]', '{"nocmd": 1}', '{"cmd": "fly"}'])
 def test_server_survives_bad_commands(bad):
-    proc = _server()
+    proc = _server("--harness")
     try:
         proc.stdin.write(bad + "\n")
         proc.stdin.flush()

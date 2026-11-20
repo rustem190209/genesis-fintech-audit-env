@@ -1,55 +1,55 @@
 {
-  "episode_id": "ep-4a5217e309d0",
+  "episode_id": "ep-4c9b8e71b479",
   "issues": [
     {
       "affected_ids": [
-        "P-71782"
+        "RCPT-26749"
       ],
-      "currency": "USD",
+      "currency": "EUR",
       "evidence_sets": [
         [
-          "2026-12-16:KZT:USD",
-          "D-346310",
-          "TX-5247841"
+          "2026-12-08:KZT:EUR",
+          "D-207624",
+          "JE-7318802"
         ]
       ],
-      "expected_amount_minor": 4051,
+      "expected_amount_minor": 10444,
       "issue_id": "ISS-01",
-      "tolerance_minor": 20,
+      "tolerance_minor": 52,
       "type": "fx_error"
     },
     {
       "affected_ids": [
-        "P-81914"
+        "RCPT-41056"
       ],
-      "currency": "USD",
+      "currency": "EUR",
       "evidence_sets": [
         [
-          "2026-12-09:KZT:USD",
-          "D-687924",
-          "TX-5043652"
+          "2026-12-10:KZT:EUR",
+          "D-652422",
+          "JE-8976356"
         ]
       ],
-      "expected_amount_minor": 10983,
+      "expected_amount_minor": 10032,
       "issue_id": "ISS-02",
-      "tolerance_minor": 54,
+      "tolerance_minor": 50,
       "type": "fx_error"
     },
     {
       "affected_ids": [
-        "P-97588"
+        "RCPT-49169"
       ],
-      "currency": "USD",
+      "currency": "EUR",
       "evidence_sets": [
         [
-          "2026-12-19:KZT:USD",
-          "D-239431",
-          "TX-4993287"
+          "2026-12-09:JPY:EUR",
+          "D-886400",
+          "JE-4845134"
         ]
       ],
-      "expected_amount_minor": 4055,
+      "expected_amount_minor": 52132,
       "issue_id": "ISS-03",
-      "tolerance_minor": 20,
+      "tolerance_minor": 260,
       "type": "fx_error"
     }
   ],

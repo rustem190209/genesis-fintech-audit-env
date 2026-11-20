@@ -7,6 +7,8 @@
 * Один эталон закрывается одним выводом. При нескольких кандидатах TP получает первый по порядку
   в findings, который проходит ВСЕ проверки. Остальные (повторы, неточные) считаются FP.
 * Нормализация: type в нижнем регистре, пробелы по краям обрезаются, ID без дублей, валюта в верхнем регистре.
+* Лишние ID в evidence_ids допустимы, кроме противоречивых: если набор требует курс fx «ДАТА:SRC:DST»,
+  то курс той же пары на другую дату в выводе делает его неверным (нельзя перечислить все даты сразу).
 """
 from dataclasses import dataclass, field
 
@@ -45,7 +47,11 @@ class MatchResult:
 
 
 def _id_list(value, name, limit, allow_empty):
-    if not isinstance(value, list) or any(not isinstance(x, str) for x in value):
+    if not isinstance(value, list):
+        raise StructureError(f"{name} must be a list of strings")
+    if len(value) > limit:  # длину проверяем до цикла: огромный список не должен подвешивать оценщика
+        raise StructureError(f"{name}: at most {limit} items")
+    if any(not isinstance(x, str) for x in value):
         raise StructureError(f"{name} must be a list of strings")
     cleaned = []
     for item in value:
@@ -54,8 +60,6 @@ def _id_list(value, name, limit, allow_empty):
         item = item.strip()
         if item and item not in cleaned:
             cleaned.append(item)
-    if len(value) > limit:
-        raise StructureError(f"{name}: at most {limit} items")
     if not cleaned and not allow_empty:
         raise StructureError(f"{name} must not be empty")
     return cleaned
@@ -94,13 +98,28 @@ def validate_submission(payload, episode_id: str) -> list:
     return result
 
 
+def _fx_pair(evidence_id: str):
+    """'2026-03-04:EUR:USD' -> ('EUR', 'USD'); для других ID -> None."""
+    parts = evidence_id.split(":")
+    if len(parts) == 3 and len(parts[0]) == 10 and parts[0][4] == "-" and parts[0][7] == "-":
+        return parts[1], parts[2]
+    return None
+
+
+def _contradicts(provided: set, required: set) -> bool:
+    """Противоречивые доказательства: в наборе есть нужный курс и ещё курс той же пары на другую дату.
+    Так нельзя «подстраховаться», вписав курсы на все возможные даты вместо выбора по правилу политики."""
+    pairs = {_fx_pair(x) for x in required} - {None}
+    return any(_fx_pair(x) in pairs and x not in required for x in provided)
+
+
 def _fully_matches(finding: dict, issue: dict) -> bool:
     if finding["currency"] != issue["currency"]:
         return False
     if abs(finding["claimed_amount_minor"] - issue["expected_amount_minor"]) > issue["tolerance_minor"]:
         return False
     provided = set(finding["evidence_ids"])
-    return any(set(s) <= provided for s in issue["evidence_sets"])
+    return any(set(s) <= provided and not _contradicts(provided, set(s)) for s in issue["evidence_sets"])
 
 
 def match_findings(findings: list, issues: list) -> MatchResult:

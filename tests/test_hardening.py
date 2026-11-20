@@ -12,6 +12,7 @@ from audit_env.calculator import CalcError, evaluate
 from audit_env.env import AuditEnv
 from audit_env.generator import generate, merge_config
 from audit_env.grader import StructureError, validate_submission
+from audit_env.grader.validate import check_episode
 from helpers import CLEAN, FULL, calc, finding_from_issue, submit
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -122,25 +123,26 @@ def test_mutating_the_reset_observation_does_not_change_the_environment():
 
 # ---- episode_id и секрет проверяющего
 
-def test_episode_id_depends_on_the_secret_but_the_data_does_not(monkeypatch):
+def test_the_secret_changes_the_data_and_stays_reproducible(monkeypatch):
     monkeypatch.delenv("AUDIT_ENV_SECRET", raising=False)
     plain = generate(5, FULL)
     monkeypatch.setenv("AUDIT_ENV_SECRET", "organizer-secret")
-    secret = generate(5, FULL)
-    other = generate(6, FULL)
-    assert plain.episode_id != secret.episode_id
-    for name in ("ledger", "invoices", "payments", "fx"):
-        assert getattr(plain, name) == getattr(secret, name)
-    assert secret.truth["issues"] == [{**i} for i in secret.truth["issues"]]
-    assert secret.episode_id != other.episode_id
+    secret_a, secret_b = generate(5, FULL), generate(5, FULL)
+    assert secret_a.open_files() == secret_b.open_files()  # тот же секрет -> те же данные
+    assert secret_a.episode_id != plain.episode_id
+    assert secret_a.fx != plain.fx and secret_a.ledger != plain.ledger  # без секрета компания другая
+    assert check_episode(secret_a) == []
 
 
-def test_a_secret_stops_brute_forcing_the_seed_from_the_episode_id(monkeypatch):
+def test_without_the_secret_the_seed_cannot_be_brute_forced_from_open_data(monkeypatch):
+    """Атака красной команды: зная генератор и config, перебрать seed по открытым данным."""
     monkeypatch.setenv("AUDIT_ENV_SECRET", "hidden")
-    target = generate(777, FULL).episode_id
+    target = generate(777, FULL)
     monkeypatch.delenv("AUDIT_ENV_SECRET")
-    guesses = {generate(seed, FULL).episode_id for seed in range(760, 800)}  # агент перебирает seed без секрета
-    assert target not in guesses
+    fingerprint = lambda ep: (ep.manifest["period_start"], ep.manifest["timezone"], ep.fx[0]["rate"], ep.fx[-1]["rate"])
+    guesses = {fingerprint(generate(seed, FULL)) for seed in range(700, 850)}  # 777 в диапазоне
+    assert fingerprint(target) not in guesses
+    assert generate(777, FULL).episode_id != target.episode_id
 
 
 # ---- границы config
@@ -176,9 +178,9 @@ def test_equal_configs_with_true_and_one_no_longer_exist():
 
 # ---- сервер не падает
 
-def _server_lines(lines):
-    proc = subprocess.run([sys.executable, "-m", "audit_env.server"], cwd=ROOT, input=lines, capture_output=True,
-                          timeout=60)
+def _server_lines(lines, *flags):
+    proc = subprocess.run([sys.executable, "-m", "audit_env.server", *(flags or ("--harness",))], cwd=ROOT,
+                          input=lines, capture_output=True, timeout=120)
     assert proc.returncode == 0, proc.stderr.decode("utf-8", "replace")
     return [json.loads(x) for x in proc.stdout.decode("utf-8").splitlines()]
 
@@ -198,3 +200,68 @@ def test_server_survives_malformed_input_and_keeps_serving():
     assert replies[7]["observation"]["budget_remaining"] == 100
     assert replies[8]["observation"]["error"]["code"] == "invalid_cursor"
     assert replies[9]["observation"]["error"]["code"] == "calc_error"
+
+
+def test_server_survives_huge_integers_and_long_errors():
+    """Находки красной команды: число длиннее 4300 цифр роняло сервер; ошибка config возвращала ввод целиком."""
+    huge = b'{"cmd":"reset","seed":' + b"9" * 5000 + b"}"
+    in_step = b'{"cmd":"step","action":{"tool":"list_records","args":{"table":"ledger","limit":' + b"1" * 4400 + b"}}}"
+    long_key = b'{"cmd":"reset","seed":1,"config":{"' + b"k" * 100000 + b'":1}}'
+    replies = _server_lines(b"\n".join([huge, b'{"cmd":"reset","seed":1}', in_step, long_key]) + b"\n")
+    assert replies[0] == {"error": "invalid JSON"}
+    assert replies[1]["observation"]["budget_remaining"] == 100
+    assert replies[2] == {"error": "invalid JSON"}
+    assert len(replies[3]["error"]) <= 200
+
+
+def test_huge_id_lists_are_rejected_fast():
+    """Находка красной команды: проверка дублей в длинном списке была квадратичной (55 с на 100 000 id)."""
+    import time
+    payload = {"episode_id": "e", "findings": [{"type": "fx_error", "affected_ids": [f"P{i}" for i in range(200000)],
+                                                "claimed_amount_minor": 1, "currency": "USD", "evidence_ids": [],
+                                                "explanation": ""}]}
+    started = time.perf_counter()
+    with pytest.raises(StructureError):
+        validate_submission(payload, "e")
+    assert time.perf_counter() - started < 1.0
+
+
+@pytest.mark.parametrize("expr", ["١+١", "１+１", "𝟏+𝟐", "²"])
+def test_calculator_accepts_only_ascii_digits(expr):
+    with pytest.raises(CalcError):
+        evaluate(expr)
+
+
+# ---- режим агента у сервера: агент не может сменить эпизод
+
+def test_agent_mode_server_rejects_reset_and_writes_the_report_for_the_harness(tmp_path):
+    report = tmp_path / "report.json"
+    config = tmp_path / "config.json"
+    config.write_text(json.dumps(FULL), encoding="utf-8")
+    env = AuditEnv()
+    _, info = env.reset(4, FULL)
+    lines = [b'{"cmd":"start"}', b'{"cmd":"reset","seed":1,"config":{}}', b'{"cmd":"report"}',
+             json.dumps({"cmd": "step", "action": submit(info["episode_id"], [])}).encode(), b'{"cmd":"start"}']
+    replies = _server_lines(b"\n".join(lines) + b"\n", "--seed", "4", "--config", str(config), "--mode", "closed",
+                            "--report", str(report))
+    assert replies[0]["info"]["episode_id"] == info["episode_id"]
+    assert "harness" in replies[1]["error"] and "harness" in replies[2]["error"]  # подменить эпизод нельзя
+    assert replies[3]["terminated"] and replies[3]["reward"] == 0.0  # closed: агент награду не видит
+    written = json.loads(report.read_text(encoding="utf-8"))
+    assert written["episode_id"] == info["episode_id"] and written["status"] == "graded" and written["fn"] > 0
+    assert replies[4] == replies[0]
+
+
+def test_server_requires_an_explicit_mode():
+    for flags in ([], ["--harness", "--seed", "1"]):
+        proc = subprocess.run([sys.executable, "-m", "audit_env.server", *flags], cwd=ROOT, input=b"",
+                              capture_output=True, timeout=60)
+        assert proc.returncode == 2
+
+
+def test_agent_mode_with_a_bad_config_fails_at_startup(tmp_path):
+    bad = tmp_path / "bad.json"
+    bad.write_text('{"nope": 1}', encoding="utf-8")
+    proc = subprocess.run([sys.executable, "-m", "audit_env.server", "--seed", "1", "--config", str(bad)], cwd=ROOT,
+                          input=b"", capture_output=True, timeout=60)
+    assert proc.returncode == 2
