@@ -216,4 +216,4 @@ python -m audit_env.server --seed 42 --mode closed --report report.json
 - Траектории `results\trajectories.jsonl` и таблица `results\baseline_results.md`.
 - Записка о дизайне `DESIGN.md`.
 - Демо: [ЗАПОЛНИТЬ: ссылка на демо-видео].
-- Репозиторий: [ЗАПОЛНИТЬ: ссылка на GitHub].
+- Репозиторий: https://github.com/rustem190209/genesis-fintech-audit-env.
