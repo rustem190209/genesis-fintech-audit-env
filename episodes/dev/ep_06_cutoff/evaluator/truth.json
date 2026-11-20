@@ -1,0 +1,66 @@
+{
+  "episode_id": "ep-ac4e27abb1a0",
+  "issues": [
+    {
+      "affected_ids": [
+        "BILL-13558"
+      ],
+      "currency": "EUR",
+      "evidence_sets": [
+        [
+          "DOC-585804",
+          "JE-9545194"
+        ],
+        [
+          "DOC-585804",
+          "JE-9128239"
+        ]
+      ],
+      "expected_amount_minor": 1238227,
+      "issue_id": "ISS-01",
+      "tolerance_minor": 6191,
+      "type": "period_cutoff"
+    },
+    {
+      "affected_ids": [
+        "BILL-93828"
+      ],
+      "currency": "EUR",
+      "evidence_sets": [
+        [
+          "DOC-521786",
+          "JE-1533662"
+        ],
+        [
+          "DOC-521786",
+          "JE-1262168"
+        ]
+      ],
+      "expected_amount_minor": 869766,
+      "issue_id": "ISS-02",
+      "tolerance_minor": 4348,
+      "type": "period_cutoff"
+    },
+    {
+      "affected_ids": [
+        "BILL-99596"
+      ],
+      "currency": "KZT",
+      "evidence_sets": [
+        [
+          "DOC-434036",
+          "JE-2751795"
+        ],
+        [
+          "DOC-434036",
+          "JE-5156113"
+        ]
+      ],
+      "expected_amount_minor": 882290978,
+      "issue_id": "ISS-03",
+      "tolerance_minor": 4411454,
+      "type": "period_cutoff"
+    }
+  ],
+  "schema_version": "1.0"
+}

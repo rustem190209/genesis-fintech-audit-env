@@ -1,0 +1,40 @@
+{
+  "episode_id": "ep-50c861037bc1",
+  "issues": [
+    {
+      "affected_ids": [
+        "BILL-31896",
+        "BILL-86198"
+      ],
+      "currency": "KZT",
+      "evidence_sets": [
+        [
+          "DOC-585859",
+          "DOC-787551"
+        ]
+      ],
+      "expected_amount_minor": 544481791,
+      "issue_id": "ISS-01",
+      "tolerance_minor": 2722408,
+      "type": "duplicate_invoice"
+    },
+    {
+      "affected_ids": [
+        "BILL-75046",
+        "BILL-76667"
+      ],
+      "currency": "EUR",
+      "evidence_sets": [
+        [
+          "DOC-171893",
+          "DOC-677793"
+        ]
+      ],
+      "expected_amount_minor": 1230381,
+      "issue_id": "ISS-02",
+      "tolerance_minor": 6151,
+      "type": "duplicate_invoice"
+    }
+  ],
+  "schema_version": "1.0"
+}

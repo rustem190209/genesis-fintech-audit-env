@@ -1,0 +1,146 @@
+{
+  "episode_id": "ep-13a0914b15cb",
+  "issues": [
+    {
+      "affected_ids": [
+        "BILL-30100",
+        "BILL-94854"
+      ],
+      "currency": "EUR",
+      "evidence_sets": [
+        [
+          "D-587838",
+          "D-617065"
+        ]
+      ],
+      "expected_amount_minor": 65201,
+      "issue_id": "ISS-01",
+      "tolerance_minor": 326,
+      "type": "duplicate_invoice"
+    },
+    {
+      "affected_ids": [
+        "BILL-33004",
+        "BILL-66187"
+      ],
+      "currency": "EUR",
+      "evidence_sets": [
+        [
+          "D-293233",
+          "D-940595"
+        ]
+      ],
+      "expected_amount_minor": 641549,
+      "issue_id": "ISS-02",
+      "tolerance_minor": 3207,
+      "type": "duplicate_invoice"
+    },
+    {
+      "affected_ids": [
+        "RCPT-10976"
+      ],
+      "currency": "EUR",
+      "evidence_sets": [
+        [
+          "2026-10-01:JPY:EUR",
+          "D-571154",
+          "TX-6546483"
+        ]
+      ],
+      "expected_amount_minor": 56095,
+      "issue_id": "ISS-03",
+      "tolerance_minor": 280,
+      "type": "fx_error"
+    },
+    {
+      "affected_ids": [
+        "RCPT-43681"
+      ],
+      "currency": "EUR",
+      "evidence_sets": [
+        [
+          "2026-10-22:JPY:EUR",
+          "D-501048",
+          "TX-9989257"
+        ]
+      ],
+      "expected_amount_minor": 38815,
+      "issue_id": "ISS-04",
+      "tolerance_minor": 194,
+      "type": "fx_error"
+    },
+    {
+      "affected_ids": [
+        "RCPT-10976"
+      ],
+      "currency": "EUR",
+      "evidence_sets": [
+        [
+          "D-571154",
+          "TX-6546483"
+        ]
+      ],
+      "expected_amount_minor": 1521356,
+      "issue_id": "ISS-05",
+      "tolerance_minor": 7606,
+      "type": "payment_allocation"
+    },
+    {
+      "affected_ids": [
+        "RCPT-50155"
+      ],
+      "currency": "EUR",
+      "evidence_sets": [
+        [
+          "D-127191",
+          "TX-6018150"
+        ]
+      ],
+      "expected_amount_minor": 475313,
+      "issue_id": "ISS-06",
+      "tolerance_minor": 2376,
+      "type": "payment_allocation"
+    },
+    {
+      "affected_ids": [
+        "BILL-30100"
+      ],
+      "currency": "EUR",
+      "evidence_sets": [
+        [
+          "D-587838",
+          "TX-1407125"
+        ],
+        [
+          "D-587838",
+          "TX-8007610"
+        ]
+      ],
+      "expected_amount_minor": 65201,
+      "issue_id": "ISS-07",
+      "tolerance_minor": 326,
+      "type": "period_cutoff"
+    },
+    {
+      "affected_ids": [
+        "BILL-46789"
+      ],
+      "currency": "JPY",
+      "evidence_sets": [
+        [
+          "D-226780",
+          "TX-1741872"
+        ],
+        [
+          "D-226780",
+          "TX-8364263"
+        ]
+      ],
+      "expected_amount_minor": 935070,
+      "issue_id": "ISS-08",
+      "tolerance_minor": 4675,
+      "type": "period_cutoff"
+    }
+  ],
+  "schema_version": "1.0"
+}

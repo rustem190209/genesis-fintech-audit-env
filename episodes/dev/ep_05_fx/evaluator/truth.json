@@ -1,0 +1,57 @@
+{
+  "episode_id": "ep-4a5217e309d0",
+  "issues": [
+    {
+      "affected_ids": [
+        "P-71782"
+      ],
+      "currency": "USD",
+      "evidence_sets": [
+        [
+          "2026-12-16:KZT:USD",
+          "D-346310",
+          "TX-5247841"
+        ]
+      ],
+      "expected_amount_minor": 4051,
+      "issue_id": "ISS-01",
+      "tolerance_minor": 20,
+      "type": "fx_error"
+    },
+    {
+      "affected_ids": [
+        "P-81914"
+      ],
+      "currency": "USD",
+      "evidence_sets": [
+        [
+          "2026-12-09:KZT:USD",
+          "D-687924",
+          "TX-5043652"
+        ]
+      ],
+      "expected_amount_minor": 10983,
+      "issue_id": "ISS-02",
+      "tolerance_minor": 54,
+      "type": "fx_error"
+    },
+    {
+      "affected_ids": [
+        "P-97588"
+      ],
+      "currency": "USD",
+      "evidence_sets": [
+        [
+          "2026-12-19:KZT:USD",
+          "D-239431",
+          "TX-4993287"
+        ]
+      ],
+      "expected_amount_minor": 4055,
+      "issue_id": "ISS-03",
+      "tolerance_minor": 20,
+      "type": "fx_error"
+    }
+  ],
+  "schema_version": "1.0"
+}

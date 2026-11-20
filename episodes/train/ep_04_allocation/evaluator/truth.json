@@ -1,0 +1,38 @@
+{
+  "episode_id": "ep-485cc98dc1bc",
+  "issues": [
+    {
+      "affected_ids": [
+        "PAY-15346"
+      ],
+      "currency": "KZT",
+      "evidence_sets": [
+        [
+          "DOC-486471",
+          "TX-6354359"
+        ]
+      ],
+      "expected_amount_minor": 134524155,
+      "issue_id": "ISS-01",
+      "tolerance_minor": 672620,
+      "type": "payment_allocation"
+    },
+    {
+      "affected_ids": [
+        "PAY-86042"
+      ],
+      "currency": "KZT",
+      "evidence_sets": [
+        [
+          "DOC-489449",
+          "TX-2358122"
+        ]
+      ],
+      "expected_amount_minor": 37630653,
+      "issue_id": "ISS-02",
+      "tolerance_minor": 188153,
+      "type": "payment_allocation"
+    }
+  ],
+  "schema_version": "1.0"
+}

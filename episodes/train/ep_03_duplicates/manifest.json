@@ -1,0 +1,30 @@
+{
+  "base_currency": "EUR",
+  "counts": {
+    "fx_rows": 112,
+    "invoices": 91,
+    "ledger_rows": 512,
+    "payments": 44
+  },
+  "currency_exponents": {
+    "EUR": 2,
+    "KZT": 2,
+    "USD": 2
+  },
+  "episode_id": "ep-50c861037bc1",
+  "files": [
+    "ledger.csv",
+    "invoices.jsonl",
+    "payments.jsonl",
+    "fx.csv",
+    "policy.json"
+  ],
+  "period_end": "2027-01-01T00:00:00+01:00",
+  "period_start": "2026-12-01T00:00:00+01:00",
+  "rounding": {
+    "mode": "half_even",
+    "unit": "minor units of the target currency"
+  },
+  "schema_version": "1.0",
+  "timezone": "+01:00"
+}

@@ -1,0 +1,5364 @@
+{
+  "changes": [
+    {
+      "booked_total_minor": 327457804,
+      "correct_credit_minor": 327457804,
+      "interaction": null,
+      "issue_id": "ISS-01",
+      "kind": "payment_plan",
+      "payment_id": "PAY-15346",
+      "plan": {
+        "alloc": true,
+        "fraction": 0.5891862924225151,
+        "fx": false,
+        "mode": "partial"
+      },
+      "unapplied_minor": 134524155
+    },
+    {
+      "booked_total_minor": 37630653,
+      "correct_credit_minor": 37630653,
+      "interaction": null,
+      "issue_id": "ISS-02",
+      "kind": "payment_plan",
+      "payment_id": "PAY-86042",
+      "plan": {
+        "alloc": true,
+        "fraction": 0.4626542806486281,
+        "fx": false,
+        "mode": "missing"
+      },
+      "unapplied_minor": 37630653
+    }
+  ],
+  "clean_ledger": [
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 153059423,
+      "entity_id": "CUST-8764",
+      "invoice_id": "INV-68477",
+      "payment_id": null,
+      "timestamp": "2026-01-09T11:52:05+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 153059423,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8764",
+      "invoice_id": "INV-68477",
+      "payment_id": null,
+      "timestamp": "2026-01-09T11:52:05+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 321981625,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-93919",
+      "payment_id": null,
+      "timestamp": "2026-01-11T05:27:53+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 321981625,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-93919",
+      "payment_id": null,
+      "timestamp": "2026-01-11T05:27:53+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 894295176,
+      "entity_id": "CUST-7895",
+      "invoice_id": "INV-39058",
+      "payment_id": null,
+      "timestamp": "2026-01-28T03:36:41+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 894295176,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-7895",
+      "invoice_id": "INV-39058",
+      "payment_id": null,
+      "timestamp": "2026-01-28T03:36:41+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 638335848,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-56523",
+      "payment_id": null,
+      "timestamp": "2025-12-31T12:10:51+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 638335848,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-56523",
+      "payment_id": null,
+      "timestamp": "2025-12-31T12:10:51+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 581876316,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-87146",
+      "payment_id": null,
+      "timestamp": "2026-01-05T07:16:30+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 581876316,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-87146",
+      "payment_id": null,
+      "timestamp": "2026-01-05T07:16:30+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 475277381,
+      "entity_id": "CUST-8764",
+      "invoice_id": "INV-11809",
+      "payment_id": null,
+      "timestamp": "2026-01-18T11:38:27+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 475277381,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8764",
+      "invoice_id": "INV-11809",
+      "payment_id": null,
+      "timestamp": "2026-01-18T11:38:27+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 328441450,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-25180",
+      "payment_id": null,
+      "timestamp": "2026-01-25T14:17:58+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 328441450,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-25180",
+      "payment_id": null,
+      "timestamp": "2026-01-25T14:17:58+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 326719576,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-77325",
+      "payment_id": null,
+      "timestamp": "2026-01-10T21:25:18+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 326719576,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-77325",
+      "payment_id": null,
+      "timestamp": "2026-01-10T21:25:18+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 38910556,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-70226",
+      "payment_id": null,
+      "timestamp": "2026-01-09T06:40:59+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 38910556,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-70226",
+      "payment_id": null,
+      "timestamp": "2026-01-09T06:40:59+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 75828738,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-97808",
+      "payment_id": null,
+      "timestamp": "2026-01-24T06:53:26+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 75828738,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-97808",
+      "payment_id": null,
+      "timestamp": "2026-01-24T06:53:26+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 64752822,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-90425",
+      "payment_id": null,
+      "timestamp": "2026-01-07T15:31:46+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 64752822,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-90425",
+      "payment_id": null,
+      "timestamp": "2026-01-07T15:31:46+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 737222166,
+      "entity_id": "CUST-2045",
+      "invoice_id": "INV-88176",
+      "payment_id": null,
+      "timestamp": "2026-01-31T05:37:13+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 737222166,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2045",
+      "invoice_id": "INV-88176",
+      "payment_id": null,
+      "timestamp": "2026-01-31T05:37:13+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 674262299,
+      "entity_id": "CUST-8984",
+      "invoice_id": "INV-81141",
+      "payment_id": null,
+      "timestamp": "2026-01-10T18:34:43+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 674262299,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8984",
+      "invoice_id": "INV-81141",
+      "payment_id": null,
+      "timestamp": "2026-01-10T18:34:43+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 515183119,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-48747",
+      "payment_id": null,
+      "timestamp": "2025-12-29T21:04:34+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 515183119,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-48747",
+      "payment_id": null,
+      "timestamp": "2025-12-29T21:04:34+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 589994924,
+      "entity_id": "CUST-2045",
+      "invoice_id": "INV-41712",
+      "payment_id": null,
+      "timestamp": "2026-01-21T00:54:55+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 589994924,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2045",
+      "invoice_id": "INV-41712",
+      "payment_id": null,
+      "timestamp": "2026-01-21T00:54:55+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 68578680,
+      "entity_id": "CUST-8984",
+      "invoice_id": "INV-25186",
+      "payment_id": null,
+      "timestamp": "2026-01-28T05:26:01+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 68578680,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8984",
+      "invoice_id": "INV-25186",
+      "payment_id": null,
+      "timestamp": "2026-01-28T05:26:01+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 1839128,
+      "entity_id": "CUST-2387",
+      "invoice_id": "INV-78735",
+      "payment_id": null,
+      "timestamp": "2026-01-16T03:11:02+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 1839128,
+      "currency": "JPY",
+      "debit_minor": 0,
+      "entity_id": "CUST-2387",
+      "invoice_id": "INV-78735",
+      "payment_id": null,
+      "timestamp": "2026-01-16T03:11:02+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 526958182,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-78763",
+      "payment_id": null,
+      "timestamp": "2026-01-10T19:28:59+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 526958182,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-78763",
+      "payment_id": null,
+      "timestamp": "2026-01-10T19:28:59+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 57648165,
+      "entity_id": "CUST-9715",
+      "invoice_id": "INV-60725",
+      "payment_id": null,
+      "timestamp": "2026-01-04T15:25:44+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 57648165,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-9715",
+      "invoice_id": "INV-60725",
+      "payment_id": null,
+      "timestamp": "2026-01-04T15:25:44+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 805256161,
+      "entity_id": "CUST-5517",
+      "invoice_id": "INV-39516",
+      "payment_id": null,
+      "timestamp": "2026-01-25T23:34:32+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 805256161,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-5517",
+      "invoice_id": "INV-39516",
+      "payment_id": null,
+      "timestamp": "2026-01-25T23:34:32+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 293650926,
+      "entity_id": "CUST-8764",
+      "invoice_id": "INV-41352",
+      "payment_id": null,
+      "timestamp": "2026-01-09T22:48:51+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 293650926,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8764",
+      "invoice_id": "INV-41352",
+      "payment_id": null,
+      "timestamp": "2026-01-09T22:48:51+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 792399698,
+      "entity_id": "CUST-8637",
+      "invoice_id": "INV-46969",
+      "payment_id": null,
+      "timestamp": "2026-01-08T10:07:24+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 792399698,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8637",
+      "invoice_id": "INV-46969",
+      "payment_id": null,
+      "timestamp": "2026-01-08T10:07:24+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 659468360,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-23457",
+      "payment_id": null,
+      "timestamp": "2026-01-09T04:03:11+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 659468360,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-23457",
+      "payment_id": null,
+      "timestamp": "2026-01-09T04:03:11+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 443595241,
+      "entity_id": "CUST-5517",
+      "invoice_id": "INV-35143",
+      "payment_id": null,
+      "timestamp": "2026-01-11T03:55:26+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 443595241,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-5517",
+      "invoice_id": "INV-35143",
+      "payment_id": null,
+      "timestamp": "2026-01-11T03:55:26+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 682905058,
+      "entity_id": "CUST-7895",
+      "invoice_id": "INV-49100",
+      "payment_id": null,
+      "timestamp": "2026-01-01T20:36:41+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 682905058,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-7895",
+      "invoice_id": "INV-49100",
+      "payment_id": null,
+      "timestamp": "2026-01-01T20:36:41+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 112245573,
+      "entity_id": "CUST-5517",
+      "invoice_id": "INV-61065",
+      "payment_id": null,
+      "timestamp": "2026-01-20T17:40:57+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 112245573,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-5517",
+      "invoice_id": "INV-61065",
+      "payment_id": null,
+      "timestamp": "2026-01-20T17:40:57+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 448911191,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-83314",
+      "payment_id": null,
+      "timestamp": "2026-01-19T02:49:06+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 448911191,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-83314",
+      "payment_id": null,
+      "timestamp": "2026-01-19T02:49:06+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 485653261,
+      "entity_id": "CUST-9715",
+      "invoice_id": "INV-43719",
+      "payment_id": null,
+      "timestamp": "2026-01-22T10:35:09+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 485653261,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-9715",
+      "invoice_id": "INV-43719",
+      "payment_id": null,
+      "timestamp": "2026-01-22T10:35:09+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 516239433,
+      "entity_id": "CUST-5517",
+      "invoice_id": "INV-77486",
+      "payment_id": null,
+      "timestamp": "2026-01-16T10:11:36+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 516239433,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-5517",
+      "invoice_id": "INV-77486",
+      "payment_id": null,
+      "timestamp": "2026-01-16T10:11:36+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 44303890,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-42378",
+      "payment_id": null,
+      "timestamp": "2026-01-20T11:38:09+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 44303890,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-42378",
+      "payment_id": null,
+      "timestamp": "2026-01-20T11:38:09+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 153073815,
+      "entity_id": "CUST-2045",
+      "invoice_id": "INV-53251",
+      "payment_id": null,
+      "timestamp": "2026-01-29T02:37:20+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 153073815,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2045",
+      "invoice_id": "INV-53251",
+      "payment_id": null,
+      "timestamp": "2026-01-29T02:37:20+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 826623221,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-38225",
+      "payment_id": null,
+      "timestamp": "2026-01-23T00:04:58+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 826623221,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-38225",
+      "payment_id": null,
+      "timestamp": "2026-01-23T00:04:58+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 530616697,
+      "entity_id": "CUST-5517",
+      "invoice_id": "INV-25713",
+      "payment_id": null,
+      "timestamp": "2026-01-16T06:13:46+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 530616697,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-5517",
+      "invoice_id": "INV-25713",
+      "payment_id": null,
+      "timestamp": "2026-01-16T06:13:46+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 890660661,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-16019",
+      "payment_id": null,
+      "timestamp": "2026-01-10T01:55:30+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 890660661,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-16019",
+      "payment_id": null,
+      "timestamp": "2026-01-10T01:55:30+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 85829354,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-48510",
+      "payment_id": null,
+      "timestamp": "2026-01-25T00:44:27+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 85829354,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-48510",
+      "payment_id": null,
+      "timestamp": "2026-01-25T00:44:27+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 210571513,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-96994",
+      "payment_id": null,
+      "timestamp": "2026-01-17T16:03:29+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 210571513,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-96994",
+      "payment_id": null,
+      "timestamp": "2026-01-17T16:03:29+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 762749395,
+      "entity_id": "CUST-2045",
+      "invoice_id": "INV-55170",
+      "payment_id": null,
+      "timestamp": "2026-01-16T13:24:30+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 762749395,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2045",
+      "invoice_id": "INV-55170",
+      "payment_id": null,
+      "timestamp": "2026-01-16T13:24:30+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 729177088,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-12894",
+      "payment_id": null,
+      "timestamp": "2026-01-31T00:17:29+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 729177088,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-12894",
+      "payment_id": null,
+      "timestamp": "2026-01-31T00:17:29+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 740510612,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-24633",
+      "payment_id": null,
+      "timestamp": "2025-12-30T19:40:27+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 740510612,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-24633",
+      "payment_id": null,
+      "timestamp": "2025-12-30T19:40:27+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 283170,
+      "entity_id": "CUST-2387",
+      "invoice_id": "INV-23435",
+      "payment_id": null,
+      "timestamp": "2026-01-23T17:49:00+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 283170,
+      "currency": "JPY",
+      "debit_minor": 0,
+      "entity_id": "CUST-2387",
+      "invoice_id": "INV-23435",
+      "payment_id": null,
+      "timestamp": "2026-01-23T17:49:00+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 753383467,
+      "entity_id": "CUST-7895",
+      "invoice_id": "INV-11624",
+      "payment_id": null,
+      "timestamp": "2026-01-09T09:28:34+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 753383467,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-7895",
+      "invoice_id": "INV-11624",
+      "payment_id": null,
+      "timestamp": "2026-01-09T09:28:34+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 51182154,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-52595",
+      "payment_id": null,
+      "timestamp": "2026-01-14T16:56:09+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 51182154,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-52595",
+      "payment_id": null,
+      "timestamp": "2026-01-14T16:56:09+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 550871660,
+      "entity_id": "CUST-8984",
+      "invoice_id": "INV-23773",
+      "payment_id": null,
+      "timestamp": "2026-01-02T18:50:26+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 550871660,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8984",
+      "invoice_id": "INV-23773",
+      "payment_id": null,
+      "timestamp": "2026-01-02T18:50:26+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 437034411,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-42153",
+      "payment_id": null,
+      "timestamp": "2026-02-02T14:45:56+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 437034411,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-42153",
+      "payment_id": null,
+      "timestamp": "2026-02-02T14:45:56+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 763252030,
+      "entity_id": "CUST-2045",
+      "invoice_id": "INV-85346",
+      "payment_id": null,
+      "timestamp": "2026-01-03T20:42:01+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 763252030,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2045",
+      "invoice_id": "INV-85346",
+      "payment_id": null,
+      "timestamp": "2026-01-03T20:42:01+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 97625178,
+      "entity_id": "CUST-2045",
+      "invoice_id": "INV-52418",
+      "payment_id": null,
+      "timestamp": "2026-01-23T09:43:39+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 97625178,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2045",
+      "invoice_id": "INV-52418",
+      "payment_id": null,
+      "timestamp": "2026-01-23T09:43:39+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 620505006,
+      "entity_id": "CUST-7895",
+      "invoice_id": "INV-91949",
+      "payment_id": null,
+      "timestamp": "2026-01-23T20:46:36+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 620505006,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-7895",
+      "invoice_id": "INV-91949",
+      "payment_id": null,
+      "timestamp": "2026-01-23T20:46:36+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 770959660,
+      "entity_id": "CUST-8984",
+      "invoice_id": "INV-83887",
+      "payment_id": null,
+      "timestamp": "2026-02-01T19:38:19+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 770959660,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8984",
+      "invoice_id": "INV-83887",
+      "payment_id": null,
+      "timestamp": "2026-02-01T19:38:19+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 33692979,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-19663",
+      "payment_id": null,
+      "timestamp": "2026-01-09T03:55:54+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 33692979,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-19663",
+      "payment_id": null,
+      "timestamp": "2026-01-09T03:55:54+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 724636077,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-84942",
+      "payment_id": null,
+      "timestamp": "2026-02-03T01:34:40+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 724636077,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-84942",
+      "payment_id": null,
+      "timestamp": "2026-02-03T01:34:40+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 721074515,
+      "entity_id": "CUST-7895",
+      "invoice_id": "INV-93156",
+      "payment_id": null,
+      "timestamp": "2026-02-03T04:30:02+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 721074515,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-7895",
+      "invoice_id": "INV-93156",
+      "payment_id": null,
+      "timestamp": "2026-02-03T04:30:02+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 291139252,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-75752",
+      "payment_id": null,
+      "timestamp": "2026-01-25T16:59:13+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 291139252,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-75752",
+      "payment_id": null,
+      "timestamp": "2026-01-25T16:59:13+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 186882543,
+      "entity_id": "CUST-8984",
+      "invoice_id": "INV-70453",
+      "payment_id": null,
+      "timestamp": "2026-01-14T17:32:35+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 186882543,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8984",
+      "invoice_id": "INV-70453",
+      "payment_id": null,
+      "timestamp": "2026-01-14T17:32:35+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 39029105,
+      "entity_id": "CUST-7895",
+      "invoice_id": "INV-36681",
+      "payment_id": null,
+      "timestamp": "2026-01-18T11:44:17+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 39029105,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-7895",
+      "invoice_id": "INV-36681",
+      "payment_id": null,
+      "timestamp": "2026-01-18T11:44:17+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 379640429,
+      "entity_id": "CUST-2045",
+      "invoice_id": "INV-56367",
+      "payment_id": null,
+      "timestamp": "2026-01-08T05:10:10+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 379640429,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2045",
+      "invoice_id": "INV-56367",
+      "payment_id": null,
+      "timestamp": "2026-01-08T05:10:10+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 627552325,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-95304",
+      "payment_id": null,
+      "timestamp": "2026-01-20T20:23:09+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 627552325,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-95304",
+      "payment_id": null,
+      "timestamp": "2026-01-20T20:23:09+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 50063827,
+      "entity_id": "CUST-8764",
+      "invoice_id": "INV-18572",
+      "payment_id": null,
+      "timestamp": "2026-01-05T14:43:19+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 50063827,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8764",
+      "invoice_id": "INV-18572",
+      "payment_id": null,
+      "timestamp": "2026-01-05T14:43:19+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 454969479,
+      "entity_id": "CUST-9715",
+      "invoice_id": "INV-94452",
+      "payment_id": null,
+      "timestamp": "2026-01-27T10:13:19+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 454969479,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-9715",
+      "invoice_id": "INV-94452",
+      "payment_id": null,
+      "timestamp": "2026-01-27T10:13:19+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 378285626,
+      "entity_id": "CUST-8984",
+      "invoice_id": "INV-82181",
+      "payment_id": null,
+      "timestamp": "2026-01-30T09:01:50+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 378285626,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8984",
+      "invoice_id": "INV-82181",
+      "payment_id": null,
+      "timestamp": "2026-01-30T09:01:50+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 503798982,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-59814",
+      "payment_id": null,
+      "timestamp": "2026-01-09T18:28:15+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 503798982,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-59814",
+      "payment_id": null,
+      "timestamp": "2026-01-09T18:28:15+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 352718720,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-20281",
+      "payment_id": null,
+      "timestamp": "2026-01-13T17:11:53+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 352718720,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-20281",
+      "payment_id": null,
+      "timestamp": "2026-01-13T17:11:53+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 552831253,
+      "entity_id": "CUST-7895",
+      "invoice_id": "INV-92177",
+      "payment_id": null,
+      "timestamp": "2026-01-04T01:28:43+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 552831253,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-7895",
+      "invoice_id": "INV-92177",
+      "payment_id": null,
+      "timestamp": "2026-01-04T01:28:43+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 219853682,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-17852",
+      "payment_id": null,
+      "timestamp": "2026-01-16T18:10:48+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 219853682,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-17852",
+      "payment_id": null,
+      "timestamp": "2026-01-16T18:10:48+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 1987197,
+      "entity_id": "CUST-2387",
+      "invoice_id": "INV-90966",
+      "payment_id": null,
+      "timestamp": "2026-01-11T07:44:06+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 1987197,
+      "currency": "JPY",
+      "debit_minor": 0,
+      "entity_id": "CUST-2387",
+      "invoice_id": "INV-90966",
+      "payment_id": null,
+      "timestamp": "2026-01-11T07:44:06+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 771243871,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-22219",
+      "payment_id": null,
+      "timestamp": "2026-01-04T11:37:59+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 771243871,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-22219",
+      "payment_id": null,
+      "timestamp": "2026-01-04T11:37:59+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 771243871,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-43640",
+      "payment_id": null,
+      "timestamp": "2026-01-11T11:38:00+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 771243871,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-43640",
+      "payment_id": null,
+      "timestamp": "2026-01-11T11:38:00+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 771243871,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-15277",
+      "payment_id": null,
+      "timestamp": "2026-01-18T11:44:57+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 771243871,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-15277",
+      "payment_id": null,
+      "timestamp": "2026-01-18T11:44:57+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 880038297,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-87456",
+      "payment_id": null,
+      "timestamp": "2026-01-08T22:36:26+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 880038297,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-87456",
+      "payment_id": null,
+      "timestamp": "2026-01-08T22:36:26+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 880038297,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-84614",
+      "payment_id": null,
+      "timestamp": "2026-01-15T22:35:05+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 880038297,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-84614",
+      "payment_id": null,
+      "timestamp": "2026-01-15T22:35:05+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 880038297,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-13139",
+      "payment_id": null,
+      "timestamp": "2026-01-22T22:35:50+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 880038297,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-13139",
+      "payment_id": null,
+      "timestamp": "2026-01-22T22:35:50+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 735279954,
+      "entity_id": "CUST-9715",
+      "invoice_id": "INV-34597",
+      "payment_id": null,
+      "timestamp": "2026-01-31T20:22:00+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 735279954,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-9715",
+      "invoice_id": "INV-34597",
+      "payment_id": null,
+      "timestamp": "2026-01-31T20:22:00+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 581251361,
+      "entity_id": "CUST-8637",
+      "invoice_id": "INV-54828",
+      "payment_id": null,
+      "timestamp": "2025-12-31T20:32:00+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 581251361,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8637",
+      "invoice_id": "INV-54828",
+      "payment_id": null,
+      "timestamp": "2025-12-31T20:32:00+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 489291809,
+      "entity_id": "CUST-8637",
+      "invoice_id": "INV-12102",
+      "payment_id": null,
+      "timestamp": "2026-01-31T22:20:07+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 489291809,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8637",
+      "invoice_id": "INV-12102",
+      "payment_id": null,
+      "timestamp": "2026-01-31T22:20:07+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 521035339,
+      "entity_id": "CUST-2045",
+      "invoice_id": "INV-13518",
+      "payment_id": null,
+      "timestamp": "2026-01-03T15:17:40+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 521035339,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2045",
+      "invoice_id": "INV-13518",
+      "payment_id": null,
+      "timestamp": "2026-01-03T15:17:40+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 516026304,
+      "entity_id": "CUST-8764",
+      "invoice_id": "INV-24307",
+      "payment_id": null,
+      "timestamp": "2026-01-09T05:29:40+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 516026304,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8764",
+      "invoice_id": "INV-24307",
+      "payment_id": null,
+      "timestamp": "2026-01-09T05:29:40+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 232591968,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-19946",
+      "payment_id": null,
+      "timestamp": "2026-01-25T01:04:51+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 232591968,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-19946",
+      "payment_id": null,
+      "timestamp": "2026-01-25T01:04:51+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 232591968,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-12323",
+      "payment_id": null,
+      "timestamp": "2026-01-09T06:43:53+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 232591968,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-12323",
+      "payment_id": null,
+      "timestamp": "2026-01-09T06:43:53+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 556800547,
+      "entity_id": "CUST-8637",
+      "invoice_id": "INV-12562",
+      "payment_id": null,
+      "timestamp": "2026-01-02T09:37:05+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 556800547,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8637",
+      "invoice_id": "INV-12562",
+      "payment_id": null,
+      "timestamp": "2026-01-02T09:37:05+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 556800547,
+      "entity_id": "CUST-8637",
+      "invoice_id": "INV-82007",
+      "payment_id": null,
+      "timestamp": "2026-01-14T09:43:41+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 556800547,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8637",
+      "invoice_id": "INV-82007",
+      "payment_id": null,
+      "timestamp": "2026-01-14T09:43:41+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 650165855,
+      "entity_id": "CUST-9715",
+      "invoice_id": "INV-38006",
+      "payment_id": null,
+      "timestamp": "2026-01-05T23:48:48+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 650165855,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-9715",
+      "invoice_id": "INV-38006",
+      "payment_id": null,
+      "timestamp": "2026-01-05T23:48:48+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 650165855,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-89612",
+      "payment_id": null,
+      "timestamp": "2026-01-24T09:57:19+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 650165855,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-89612",
+      "payment_id": null,
+      "timestamp": "2026-01-24T09:57:19+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 672298366,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-66238",
+      "payment_id": null,
+      "timestamp": "2026-01-08T23:26:16+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 672298366,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-66238",
+      "payment_id": null,
+      "timestamp": "2026-01-08T23:26:16+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 672298366,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-18809",
+      "payment_id": null,
+      "timestamp": "2026-01-20T23:35:31+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 672298366,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-18809",
+      "payment_id": null,
+      "timestamp": "2026-01-20T23:35:31+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 692594428,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-74605",
+      "payment_id": null,
+      "timestamp": "2026-01-15T05:13:39+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 692594428,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-74605",
+      "payment_id": null,
+      "timestamp": "2026-01-15T05:13:39+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 293055671,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-20170",
+      "payment_id": null,
+      "timestamp": "2026-01-17T05:12:36+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 293055671,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-20170",
+      "payment_id": null,
+      "timestamp": "2026-01-17T05:12:36+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 2850630,
+      "entity_id": "CUST-2387",
+      "invoice_id": "INV-83867",
+      "payment_id": null,
+      "timestamp": "2026-01-07T20:58:07+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 2850630,
+      "currency": "JPY",
+      "debit_minor": 0,
+      "entity_id": "CUST-2387",
+      "invoice_id": "INV-83867",
+      "payment_id": null,
+      "timestamp": "2026-01-07T20:58:07+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 2808844,
+      "entity_id": "CUST-2387",
+      "invoice_id": "INV-78512",
+      "payment_id": null,
+      "timestamp": "2026-01-10T21:04:15+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 2808844,
+      "currency": "JPY",
+      "debit_minor": 0,
+      "entity_id": "CUST-2387",
+      "invoice_id": "INV-78512",
+      "payment_id": null,
+      "timestamp": "2026-01-10T21:04:15+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 327457804,
+      "entity_id": "CUST-8637",
+      "invoice_id": "INV-68400",
+      "payment_id": null,
+      "timestamp": "2026-01-13T17:54:14+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 327457804,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8637",
+      "invoice_id": "INV-68400",
+      "payment_id": null,
+      "timestamp": "2026-01-13T17:54:14+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 37630653,
+      "entity_id": "CUST-2045",
+      "invoice_id": "INV-46468",
+      "payment_id": null,
+      "timestamp": "2026-01-04T18:44:20+00:00"
+    },
+    {
+      "account": "REVENUE",
+      "credit_minor": 37630653,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2045",
+      "invoice_id": "INV-46468",
+      "payment_id": null,
+      "timestamp": "2026-01-04T18:44:20+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 463960,
+      "entity_id": "CUST-8764",
+      "invoice_id": null,
+      "payment_id": "PAY-31848",
+      "timestamp": "2026-01-23T03:45:22+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 153059550,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8764",
+      "invoice_id": "INV-68477",
+      "payment_id": "PAY-31848",
+      "timestamp": "2026-01-23T03:45:22+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 321981625,
+      "entity_id": "CUST-2239",
+      "invoice_id": null,
+      "payment_id": "PAY-93257",
+      "timestamp": "2026-02-02T07:29:46+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 321981625,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-93919",
+      "payment_id": "PAY-93257",
+      "timestamp": "2026-02-02T07:29:46+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 638335848,
+      "entity_id": "CUST-2066",
+      "invoice_id": null,
+      "payment_id": "PAY-31588",
+      "timestamp": "2026-01-02T11:48:39+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 638335848,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-56523",
+      "payment_id": "PAY-31588",
+      "timestamp": "2026-01-02T11:48:39+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 581876316,
+      "entity_id": "CUST-2066",
+      "invoice_id": null,
+      "payment_id": "PAY-41947",
+      "timestamp": "2026-02-01T06:29:52+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 581876316,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-87146",
+      "payment_id": "PAY-41947",
+      "timestamp": "2026-02-01T06:29:52+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 475277381,
+      "entity_id": "CUST-8764",
+      "invoice_id": null,
+      "payment_id": "PAY-98142",
+      "timestamp": "2026-01-31T23:33:00+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 475277381,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8764",
+      "invoice_id": "INV-11809",
+      "payment_id": "PAY-98142",
+      "timestamp": "2026-01-31T23:33:00+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 326719576,
+      "entity_id": "CUST-2239",
+      "invoice_id": null,
+      "payment_id": "PAY-88105",
+      "timestamp": "2026-01-31T14:11:47+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 326719576,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-77325",
+      "payment_id": "PAY-88105",
+      "timestamp": "2026-01-31T14:11:47+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 38910556,
+      "entity_id": "CUST-4960",
+      "invoice_id": null,
+      "payment_id": "PAY-13848",
+      "timestamp": "2026-01-18T05:23:59+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 38910556,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-70226",
+      "payment_id": "PAY-13848",
+      "timestamp": "2026-01-18T05:23:59+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 75828738,
+      "entity_id": "CUST-4960",
+      "invoice_id": null,
+      "payment_id": "PAY-71675",
+      "timestamp": "2026-01-27T01:11:32+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 75828738,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-97808",
+      "payment_id": "PAY-71675",
+      "timestamp": "2026-01-27T01:11:32+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 197561,
+      "entity_id": "CUST-2066",
+      "invoice_id": null,
+      "payment_id": "PAY-58676",
+      "timestamp": "2026-01-14T13:38:23+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 64752979,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-90425",
+      "payment_id": "PAY-58676",
+      "timestamp": "2026-01-14T13:38:23+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 674262299,
+      "entity_id": "CUST-8984",
+      "invoice_id": null,
+      "payment_id": "PAY-75899",
+      "timestamp": "2026-01-17T18:06:11+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 674262299,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8984",
+      "invoice_id": "INV-81141",
+      "payment_id": "PAY-75899",
+      "timestamp": "2026-01-17T18:06:11+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "USD",
+      "debit_minor": 1115140,
+      "entity_id": "CUST-2239",
+      "invoice_id": null,
+      "payment_id": "PAY-54536",
+      "timestamp": "2026-01-18T18:39:28+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 515183338,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-48747",
+      "payment_id": "PAY-54536",
+      "timestamp": "2026-01-18T18:39:28+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 589994924,
+      "entity_id": "CUST-2045",
+      "invoice_id": null,
+      "payment_id": "PAY-32745",
+      "timestamp": "2026-02-03T17:41:12+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 589994924,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2045",
+      "invoice_id": "INV-41712",
+      "payment_id": "PAY-32745",
+      "timestamp": "2026-02-03T17:41:12+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 1839128,
+      "entity_id": "CUST-2387",
+      "invoice_id": null,
+      "payment_id": "PAY-52059",
+      "timestamp": "2026-01-22T06:52:50+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 1839128,
+      "currency": "JPY",
+      "debit_minor": 0,
+      "entity_id": "CUST-2387",
+      "invoice_id": "INV-78735",
+      "payment_id": "PAY-52059",
+      "timestamp": "2026-01-22T06:52:50+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 1589238,
+      "entity_id": "CUST-2239",
+      "invoice_id": null,
+      "payment_id": "PAY-54641",
+      "timestamp": "2026-01-31T23:08:00+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 526958056,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-78763",
+      "payment_id": "PAY-54641",
+      "timestamp": "2026-01-31T23:08:00+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 57648165,
+      "entity_id": "CUST-9715",
+      "invoice_id": null,
+      "payment_id": "PAY-44394",
+      "timestamp": "2026-01-17T23:29:09+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 57648165,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-9715",
+      "invoice_id": "INV-60725",
+      "payment_id": "PAY-44394",
+      "timestamp": "2026-01-17T23:29:09+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 293650926,
+      "entity_id": "CUST-8764",
+      "invoice_id": null,
+      "payment_id": "PAY-84980",
+      "timestamp": "2026-02-01T03:03:36+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 293650926,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8764",
+      "invoice_id": "INV-41352",
+      "payment_id": "PAY-84980",
+      "timestamp": "2026-02-01T03:03:36+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 792399698,
+      "entity_id": "CUST-8637",
+      "invoice_id": null,
+      "payment_id": "PAY-37902",
+      "timestamp": "2026-01-24T20:03:18+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 792399698,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8637",
+      "invoice_id": "INV-46969",
+      "payment_id": "PAY-37902",
+      "timestamp": "2026-01-24T20:03:18+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 659468360,
+      "entity_id": "CUST-2239",
+      "invoice_id": null,
+      "payment_id": "PAY-81256",
+      "timestamp": "2026-01-22T23:09:36+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 659468360,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2239",
+      "invoice_id": "INV-23457",
+      "payment_id": "PAY-81256",
+      "timestamp": "2026-01-22T23:09:36+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 682905058,
+      "entity_id": "CUST-7895",
+      "invoice_id": null,
+      "payment_id": "PAY-17472",
+      "timestamp": "2026-01-13T13:54:43+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 682905058,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-7895",
+      "invoice_id": "INV-49100",
+      "payment_id": "PAY-17472",
+      "timestamp": "2026-01-13T13:54:43+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 336284,
+      "entity_id": "CUST-5517",
+      "invoice_id": null,
+      "payment_id": "PAY-19936",
+      "timestamp": "2026-02-04T14:30:13+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 112245567,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-5517",
+      "invoice_id": "INV-61065",
+      "payment_id": "PAY-19936",
+      "timestamp": "2026-02-04T14:30:13+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 448911191,
+      "entity_id": "CUST-8620",
+      "invoice_id": null,
+      "payment_id": "PAY-40702",
+      "timestamp": "2026-01-21T19:08:46+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 448911191,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-83314",
+      "payment_id": "PAY-40702",
+      "timestamp": "2026-01-21T19:08:46+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 85829354,
+      "entity_id": "CUST-2066",
+      "invoice_id": null,
+      "payment_id": "PAY-46892",
+      "timestamp": "2026-01-29T16:41:21+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 85829354,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-48510",
+      "payment_id": "PAY-46892",
+      "timestamp": "2026-01-29T16:41:21+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 740510612,
+      "entity_id": "CUST-8620",
+      "invoice_id": null,
+      "payment_id": "PAY-98367",
+      "timestamp": "2026-01-03T20:29:56+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 740510612,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-24633",
+      "payment_id": "PAY-98367",
+      "timestamp": "2026-01-03T20:29:56+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 753383467,
+      "entity_id": "CUST-7895",
+      "invoice_id": null,
+      "payment_id": "PAY-99729",
+      "timestamp": "2026-01-22T05:31:37+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 753383467,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-7895",
+      "invoice_id": "INV-11624",
+      "payment_id": "PAY-99729",
+      "timestamp": "2026-01-22T05:31:37+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 1881063,
+      "entity_id": "CUST-7895",
+      "invoice_id": null,
+      "payment_id": "PAY-25799",
+      "timestamp": "2026-01-29T00:30:24+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 620504986,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-7895",
+      "invoice_id": "INV-91949",
+      "payment_id": "PAY-25799",
+      "timestamp": "2026-01-29T00:30:24+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 33692979,
+      "entity_id": "CUST-2066",
+      "invoice_id": null,
+      "payment_id": "PAY-54223",
+      "timestamp": "2026-01-29T13:50:50+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 33692979,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-19663",
+      "payment_id": "PAY-54223",
+      "timestamp": "2026-01-29T13:50:50+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 186882543,
+      "entity_id": "CUST-8984",
+      "invoice_id": null,
+      "payment_id": "PAY-34907",
+      "timestamp": "2026-01-19T01:16:14+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 186882543,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8984",
+      "invoice_id": "INV-70453",
+      "payment_id": "PAY-34907",
+      "timestamp": "2026-01-19T01:16:14+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 1158941,
+      "entity_id": "CUST-2045",
+      "invoice_id": null,
+      "payment_id": "PAY-96240",
+      "timestamp": "2026-01-10T10:30:01+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 379640318,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2045",
+      "invoice_id": "INV-56367",
+      "payment_id": "PAY-96240",
+      "timestamp": "2026-01-10T10:30:01+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 627552325,
+      "entity_id": "CUST-2066",
+      "invoice_id": null,
+      "payment_id": "PAY-43673",
+      "timestamp": "2026-02-01T03:04:12+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 627552325,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-95304",
+      "payment_id": "PAY-43673",
+      "timestamp": "2026-02-01T03:04:12+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 50063827,
+      "entity_id": "CUST-8764",
+      "invoice_id": null,
+      "payment_id": "PAY-68943",
+      "timestamp": "2026-02-03T23:52:23+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 50063827,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8764",
+      "invoice_id": "INV-18572",
+      "payment_id": "PAY-68943",
+      "timestamp": "2026-02-03T23:52:23+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 454969479,
+      "entity_id": "CUST-9715",
+      "invoice_id": null,
+      "payment_id": "PAY-55305",
+      "timestamp": "2026-01-31T23:18:00+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 454969479,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-9715",
+      "invoice_id": "INV-94452",
+      "payment_id": "PAY-55305",
+      "timestamp": "2026-01-31T23:18:00+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 86544480,
+      "entity_id": "CUST-8620",
+      "invoice_id": null,
+      "payment_id": "PAY-19790",
+      "timestamp": "2026-01-15T22:00:40+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 86544480,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-20281",
+      "payment_id": "PAY-19790",
+      "timestamp": "2026-01-15T22:00:40+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 266174240,
+      "entity_id": "CUST-8620",
+      "invoice_id": null,
+      "payment_id": "PAY-54955",
+      "timestamp": "2026-01-17T21:23:30+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 266174240,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-20281",
+      "payment_id": "PAY-54955",
+      "timestamp": "2026-01-17T21:23:30+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 72777369,
+      "entity_id": "CUST-7895",
+      "invoice_id": null,
+      "payment_id": "PAY-45922",
+      "timestamp": "2026-01-09T00:14:47+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 72777369,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-7895",
+      "invoice_id": "INV-92177",
+      "payment_id": "PAY-45922",
+      "timestamp": "2026-01-09T00:14:47+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 337610268,
+      "entity_id": "CUST-7895",
+      "invoice_id": null,
+      "payment_id": "PAY-60919",
+      "timestamp": "2026-01-13T23:41:57+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 337610268,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-7895",
+      "invoice_id": "INV-92177",
+      "payment_id": "PAY-60919",
+      "timestamp": "2026-01-13T23:41:57+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 142443616,
+      "entity_id": "CUST-7895",
+      "invoice_id": null,
+      "payment_id": "PAY-75818",
+      "timestamp": "2026-01-17T23:35:37+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 142443616,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-7895",
+      "invoice_id": "INV-92177",
+      "payment_id": "PAY-75818",
+      "timestamp": "2026-01-17T23:35:37+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 219853682,
+      "entity_id": "CUST-8620",
+      "invoice_id": null,
+      "payment_id": "PAY-20961",
+      "timestamp": "2026-01-20T05:03:12+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 219853682,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-17852",
+      "payment_id": "PAY-20961",
+      "timestamp": "2026-01-20T05:03:12+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 100168149,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8620",
+      "invoice_id": null,
+      "payment_id": "PAY-53986",
+      "timestamp": "2026-01-24T06:02:50+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 100168149,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-17852",
+      "payment_id": "PAY-53986",
+      "timestamp": "2026-01-24T06:02:50+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 1987197,
+      "entity_id": "CUST-2387",
+      "invoice_id": null,
+      "payment_id": "PAY-79074",
+      "timestamp": "2026-01-14T18:31:58+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 1987197,
+      "currency": "JPY",
+      "debit_minor": 0,
+      "entity_id": "CUST-2387",
+      "invoice_id": "INV-90966",
+      "payment_id": "PAY-79074",
+      "timestamp": "2026-01-14T18:31:58+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 302615,
+      "currency": "JPY",
+      "debit_minor": 0,
+      "entity_id": "CUST-2387",
+      "invoice_id": null,
+      "payment_id": "PAY-23432",
+      "timestamp": "2026-01-18T00:30:17+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 302615,
+      "entity_id": "CUST-2387",
+      "invoice_id": "INV-90966",
+      "payment_id": "PAY-23432",
+      "timestamp": "2026-01-18T00:30:17+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 771243871,
+      "entity_id": "CUST-2066",
+      "invoice_id": null,
+      "payment_id": "PAY-56978",
+      "timestamp": "2026-01-14T09:52:15+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 771243871,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-22219",
+      "payment_id": "PAY-56978",
+      "timestamp": "2026-01-14T09:52:15+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 771243871,
+      "entity_id": "CUST-2066",
+      "invoice_id": null,
+      "payment_id": "PAY-37815",
+      "timestamp": "2026-01-25T13:18:49+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 771243871,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-43640",
+      "payment_id": "PAY-37815",
+      "timestamp": "2026-01-25T13:18:49+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 2344184,
+      "entity_id": "CUST-2066",
+      "invoice_id": null,
+      "payment_id": "PAY-64830",
+      "timestamp": "2026-01-19T21:52:34+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 771243751,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-15277",
+      "payment_id": "PAY-64830",
+      "timestamp": "2026-01-19T21:52:34+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 684747059,
+      "entity_id": "CUST-2239",
+      "invoice_id": null,
+      "payment_id": "PAY-73265",
+      "timestamp": "2026-01-05T08:53:29+00:00"
+    },
+    {
+      "account": "UNAPPLIED",
+      "credit_minor": 684747059,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2239",
+      "invoice_id": null,
+      "payment_id": "PAY-73265",
+      "timestamp": "2026-01-05T08:53:29+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 1114824,
+      "entity_id": "CUST-2387",
+      "invoice_id": null,
+      "payment_id": "PAY-38012",
+      "timestamp": "2026-01-17T07:01:51+00:00"
+    },
+    {
+      "account": "UNAPPLIED",
+      "credit_minor": 1114824,
+      "currency": "JPY",
+      "debit_minor": 0,
+      "entity_id": "CUST-2387",
+      "invoice_id": null,
+      "payment_id": "PAY-38012",
+      "timestamp": "2026-01-17T07:01:51+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "USD",
+      "debit_minor": 1115834,
+      "entity_id": "CUST-2045",
+      "invoice_id": null,
+      "payment_id": "PAY-72189",
+      "timestamp": "2026-01-06T23:24:00+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 521035483,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2045",
+      "invoice_id": "INV-13518",
+      "payment_id": "PAY-72189",
+      "timestamp": "2026-01-06T23:24:00+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "USD",
+      "debit_minor": 1107568,
+      "entity_id": "CUST-8764",
+      "invoice_id": null,
+      "payment_id": "PAY-45973",
+      "timestamp": "2026-01-12T21:30:00+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 516026181,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8764",
+      "invoice_id": "INV-24307",
+      "payment_id": "PAY-45973",
+      "timestamp": "2026-01-12T21:30:00+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 232591968,
+      "entity_id": "CUST-8620",
+      "invoice_id": null,
+      "payment_id": "PAY-66150",
+      "timestamp": "2026-01-26T20:00:37+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 232591968,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8620",
+      "invoice_id": "INV-19946",
+      "payment_id": "PAY-66150",
+      "timestamp": "2026-01-26T20:00:37+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 232591968,
+      "entity_id": "CUST-2066",
+      "invoice_id": null,
+      "payment_id": "PAY-72257",
+      "timestamp": "2026-01-12T07:18:37+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 232591968,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2066",
+      "invoice_id": "INV-12323",
+      "payment_id": "PAY-72257",
+      "timestamp": "2026-01-12T07:18:37+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 650165855,
+      "entity_id": "CUST-4960",
+      "invoice_id": null,
+      "payment_id": "PAY-99323",
+      "timestamp": "2026-01-30T17:30:55+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 650165855,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-89612",
+      "payment_id": "PAY-99323",
+      "timestamp": "2026-01-30T17:30:55+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 985650099,
+      "entity_id": "CUST-4960",
+      "invoice_id": null,
+      "payment_id": "PAY-43487",
+      "timestamp": "2026-01-20T10:56:50+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 692594428,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-74605",
+      "payment_id": "PAY-43487",
+      "timestamp": "2026-01-20T10:56:50+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 293055671,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-4960",
+      "invoice_id": "INV-20170",
+      "payment_id": "PAY-43487",
+      "timestamp": "2026-01-20T10:56:50+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 5659474,
+      "entity_id": "CUST-2387",
+      "invoice_id": null,
+      "payment_id": "PAY-53575",
+      "timestamp": "2026-01-15T08:54:17+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 2850630,
+      "currency": "JPY",
+      "debit_minor": 0,
+      "entity_id": "CUST-2387",
+      "invoice_id": "INV-83867",
+      "payment_id": "PAY-53575",
+      "timestamp": "2026-01-15T08:54:17+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 2808844,
+      "currency": "JPY",
+      "debit_minor": 0,
+      "entity_id": "CUST-2387",
+      "invoice_id": "INV-78512",
+      "payment_id": "PAY-53575",
+      "timestamp": "2026-01-15T08:54:17+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 327457804,
+      "entity_id": "CUST-8637",
+      "invoice_id": null,
+      "payment_id": "PAY-15346",
+      "timestamp": "2026-01-16T12:17:18+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 327457804,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-8637",
+      "invoice_id": "INV-68400",
+      "payment_id": "PAY-15346",
+      "timestamp": "2026-01-16T12:17:18+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 37630653,
+      "entity_id": "CUST-2045",
+      "invoice_id": null,
+      "payment_id": "PAY-86042",
+      "timestamp": "2026-01-06T08:51:51+00:00"
+    },
+    {
+      "account": "AR",
+      "credit_minor": 37630653,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": "CUST-2045",
+      "invoice_id": "INV-46468",
+      "payment_id": "PAY-86042",
+      "timestamp": "2026-01-06T08:51:51+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 82663900,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-23T13:43:46+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 82663900,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-23T13:43:46+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 44118500,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-09T16:02:00+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 44118500,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-09T16:02:00+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 25151900,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-01T22:02:05+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 25151900,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-01T22:02:05+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 285504,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-23T05:34:25+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 285504,
+      "currency": "JPY",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-23T05:34:25+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 42408400,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-14T16:10:10+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 42408400,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-14T16:10:10+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 83254400,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-23T22:23:18+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 83254400,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-23T22:23:18+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 13083800,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-05T09:12:44+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 13083800,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-05T09:12:44+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 12222600,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-05T19:13:56+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 12222600,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-05T19:13:56+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 58285900,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-04T05:33:26+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 58285900,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-04T05:33:26+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 72735300,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-03T18:26:19+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 72735300,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-03T18:26:19+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 6468400,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-03T15:53:34+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 6468400,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-03T15:53:34+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "USD",
+      "debit_minor": 53400,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-30T06:00:39+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 53400,
+      "currency": "USD",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-30T06:00:39+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "USD",
+      "debit_minor": 89700,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-05T14:18:04+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 89700,
+      "currency": "USD",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-05T14:18:04+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 58804800,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-05T06:29:15+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 58804800,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-05T06:29:15+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 201546,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-31T12:05:31+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 201546,
+      "currency": "JPY",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-31T12:05:31+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 37666200,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-23T00:34:34+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 37666200,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-23T00:34:34+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 19842600,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-03T04:07:10+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 19842600,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-03T04:07:10+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 80470300,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-12T19:59:08+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 80470300,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-12T19:59:08+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 55009400,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-07T13:59:28+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 55009400,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-07T13:59:28+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 80946100,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-02T16:40:00+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 80946100,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-02T16:40:00+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 82225500,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-24T11:27:51+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 82225500,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-24T11:27:51+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 57502400,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-21T19:53:59+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 57502400,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-21T19:53:59+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 79482,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-03T21:40:50+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 79482,
+      "currency": "JPY",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-03T21:40:50+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 79578300,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-06T22:29:38+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 79578300,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-06T22:29:38+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 89217900,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-15T23:18:25+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 89217900,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-15T23:18:25+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 38844900,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-15T18:23:10+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 38844900,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-15T18:23:10+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 31274100,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-09T15:49:05+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 31274100,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-09T15:49:05+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 36080700,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-25T13:40:29+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 36080700,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-25T13:40:29+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 51889700,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-23T23:45:31+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 51889700,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-23T23:45:31+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 45160400,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-04T05:27:27+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 45160400,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-04T05:27:27+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 17106300,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-20T18:47:54+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 17106300,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-20T18:47:54+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "USD",
+      "debit_minor": 150600,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-02T15:59:24+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 150600,
+      "currency": "USD",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-02T15:59:24+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 79364800,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-28T01:52:42+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 79364800,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-28T01:52:42+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "USD",
+      "debit_minor": 172900,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-05T20:04:42+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 172900,
+      "currency": "USD",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-05T20:04:42+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 17551100,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-16T13:34:17+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 17551100,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-16T13:34:17+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 52445100,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-14T00:52:02+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 52445100,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-14T00:52:02+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 76166600,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-19T02:59:45+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 76166600,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-19T02:59:45+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "USD",
+      "debit_minor": 138800,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-14T01:41:10+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 138800,
+      "currency": "USD",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-14T01:41:10+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 11372200,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-02T03:22:06+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 11372200,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-02T03:22:06+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 69003,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-11T11:14:11+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 69003,
+      "currency": "JPY",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-11T11:14:11+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "USD",
+      "debit_minor": 183600,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-05T20:22:55+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 183600,
+      "currency": "USD",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-05T20:22:55+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 46079900,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-25T22:03:02+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 46079900,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-25T22:03:02+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 57268000,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-30T21:52:37+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 57268000,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-30T21:52:37+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 35384100,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-27T05:46:24+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 35384100,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-27T05:46:24+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 68659,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-09T04:00:07+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 68659,
+      "currency": "JPY",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-09T04:00:07+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 15360100,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-29T06:29:29+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 15360100,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-29T06:29:29+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 39179200,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-02T10:39:55+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 39179200,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-02T10:39:55+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 30958300,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-12T21:54:26+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 30958300,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-12T21:54:26+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 44699300,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-27T16:12:32+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 44699300,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-27T16:12:32+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 31921300,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-19T12:15:19+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 31921300,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-19T12:15:19+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 11618100,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-29T18:54:51+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 11618100,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-29T18:54:51+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 57549300,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-13T18:04:27+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 57549300,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-13T18:04:27+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 20913900,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-25T18:59:25+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 20913900,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-25T18:59:25+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 9680700,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-27T20:49:16+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 9680700,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-27T20:49:16+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 61506600,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-23T23:21:04+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 61506600,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-23T23:21:04+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 198209,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-04T04:18:37+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 198209,
+      "currency": "JPY",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-04T04:18:37+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 87700500,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-29T09:06:16+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 87700500,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-29T09:06:16+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "USD",
+      "debit_minor": 136600,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-11T12:53:34+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 136600,
+      "currency": "USD",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-11T12:53:34+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "USD",
+      "debit_minor": 18900,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-05T01:09:56+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 18900,
+      "currency": "USD",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-05T01:09:56+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 58548200,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-07T22:55:35+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 58548200,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-07T22:55:35+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 29904200,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-29T05:22:07+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 29904200,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-29T05:22:07+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 10233100,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-26T01:52:49+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 10233100,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-26T01:52:49+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 25479300,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-30T17:36:03+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 25479300,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-30T17:36:03+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 56166000,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-14T08:51:12+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 56166000,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-14T08:51:12+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 47093000,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-10T00:27:57+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 47093000,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-10T00:27:57+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 85422300,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-26T14:55:16+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 85422300,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-26T14:55:16+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 89849100,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-14T18:11:56+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 89849100,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-14T18:11:56+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 87802200,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-13T07:55:25+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 87802200,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-13T07:55:25+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "USD",
+      "debit_minor": 146000,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-01T13:59:54+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 146000,
+      "currency": "USD",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-01T13:59:54+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 36719300,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-28T03:50:59+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 36719300,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-28T03:50:59+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 85101800,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-29T00:34:59+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 85101800,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-29T00:34:59+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 84863000,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-07T12:26:03+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 84863000,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-07T12:26:03+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 15346500,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-01T19:36:45+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 15346500,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-01T19:36:45+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 63176200,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-02T14:52:17+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 63176200,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-02T14:52:17+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 83457500,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-03T13:25:32+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 83457500,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-03T13:25:32+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 9024900,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-28T14:32:25+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 9024900,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-28T14:32:25+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 79409700,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-30T08:26:09+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 79409700,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-30T08:26:09+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 3238300,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-11T05:27:34+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 3238300,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-11T05:27:34+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 36429800,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-07T00:38:56+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 36429800,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-07T00:38:56+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 71180900,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-27T17:12:49+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 71180900,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-27T17:12:49+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 34861800,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-18T06:43:24+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 34861800,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-18T06:43:24+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 50727000,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-23T06:48:10+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 50727000,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-23T06:48:10+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "USD",
+      "debit_minor": 131700,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-16T14:12:55+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 131700,
+      "currency": "USD",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-16T14:12:55+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 285228,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-28T13:20:25+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 285228,
+      "currency": "JPY",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-28T13:20:25+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 22515300,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-20T02:41:15+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 22515300,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-20T02:41:15+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 34497400,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-10T17:52:18+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 34497400,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-10T17:52:18+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 75411700,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-19T13:46:05+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 75411700,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-19T13:46:05+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 1737300,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-19T15:33:11+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 1737300,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-19T15:33:11+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 17639800,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-18T12:45:51+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 17639800,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-18T12:45:51+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 19728800,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-19T18:29:56+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 19728800,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-19T18:29:56+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 40636500,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-13T00:40:36+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 40636500,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-13T00:40:36+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 45161400,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-31T01:53:39+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 45161400,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-31T01:53:39+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 5315600,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-06T01:44:24+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 5315600,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-06T01:44:24+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 22244000,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-31T06:52:33+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 22244000,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-31T06:52:33+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 26913500,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-14T22:25:39+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 26913500,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-14T22:25:39+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 138416,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-15T23:15:34+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 138416,
+      "currency": "JPY",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-15T23:15:34+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 69739500,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-17T16:46:47+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 69739500,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-17T16:46:47+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 34757700,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-27T05:27:41+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 34757700,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-27T05:27:41+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 161697,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-30T11:35:36+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 161697,
+      "currency": "JPY",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-30T11:35:36+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 30344900,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-29T21:57:16+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 30344900,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-29T21:57:16+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 52533000,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-30T01:56:10+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 52533000,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-30T01:56:10+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 14334300,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-27T18:20:31+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 14334300,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-27T18:20:31+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 77952100,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-28T02:04:35+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 77952100,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-28T02:04:35+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 4709500,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-11T17:34:20+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 4709500,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-11T17:34:20+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 22408600,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-02T12:50:03+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 22408600,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-02T12:50:03+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 68298300,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-29T16:46:34+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 68298300,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-29T16:46:34+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 20279300,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-04T02:21:44+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 20279300,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-04T02:21:44+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "USD",
+      "debit_minor": 30300,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-28T09:39:00+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 30300,
+      "currency": "USD",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2025-12-28T09:39:00+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 56694900,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-22T22:39:53+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 56694900,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-22T22:39:53+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 26468000,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-04T03:00:09+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 26468000,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-04T03:00:09+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 29651800,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-25T22:40:27+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 29651800,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-25T22:40:27+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 48954900,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-04T14:37:22+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 48954900,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-04T14:37:22+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 12353500,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-10T12:55:10+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 12353500,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-10T12:55:10+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "USD",
+      "debit_minor": 198800,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-13T23:19:36+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 198800,
+      "currency": "USD",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-13T23:19:36+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 47415100,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-29T02:02:38+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 47415100,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-29T02:02:38+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 30336500,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-20T18:21:08+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 30336500,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-20T18:21:08+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 43291200,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-19T10:14:32+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 43291200,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-19T10:14:32+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "JPY",
+      "debit_minor": 232306,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-22T16:05:54+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 232306,
+      "currency": "JPY",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-01-22T16:05:54+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 45695100,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-04T19:42:27+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 45695100,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-04T19:42:27+00:00"
+    },
+    {
+      "account": "EXPENSE",
+      "credit_minor": 0,
+      "currency": "KZT",
+      "debit_minor": 33904900,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-01T01:09:11+00:00"
+    },
+    {
+      "account": "CASH",
+      "credit_minor": 33904900,
+      "currency": "KZT",
+      "debit_minor": 0,
+      "entity_id": null,
+      "invoice_id": null,
+      "payment_id": null,
+      "timestamp": "2026-02-01T01:09:11+00:00"
+    }
+  ],
+  "config": {
+    "base_currency": null,
+    "distractors": {
+      "deposits": 2,
+      "fx_clean_near_midnight": 2,
+      "multi_invoice_payments": 2,
+      "recurring": 2,
+      "refunds": 2,
+      "repeated_amounts": 2,
+      "split_payments": 2,
+      "tz_boundary": 3
+    },
+    "errors": {
+      "duplicate_invoice": 0,
+      "fx_error": 0,
+      "payment_allocation": 2,
+      "period_cutoff": 0
+    },
+    "interactions": [],
+    "n_invoices": 60,
+    "n_journal": 120,
+    "variant": {
+      "id_salt": "",
+      "shuffle": false
+    }
+  },
+  "episode_id": "ep-485cc98dc1bc",
+  "generator_version": "1.0.0",
+  "history": {
+    "distractor_tags": [
+      "alloc_error",
+      "deposit",
+      "fx_clean",
+      "multi",
+      "payment_error",
+      "recurring",
+      "refund",
+      "same_amount",
+      "split",
+      "tz_boundary"
+    ],
+    "entities": 12,
+    "foreign_currencies": [
+      "JPY",
+      "USD"
+    ]
+  },
+  "seed": 104
+}

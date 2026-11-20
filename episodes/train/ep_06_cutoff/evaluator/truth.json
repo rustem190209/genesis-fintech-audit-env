@@ -1,0 +1,46 @@
+{
+  "episode_id": "ep-c278e48b9395",
+  "issues": [
+    {
+      "affected_ids": [
+        "INV-26494"
+      ],
+      "currency": "KZT",
+      "evidence_sets": [
+        [
+          "DOC-995618",
+          "JE-9538996"
+        ],
+        [
+          "DOC-995618",
+          "JE-8501576"
+        ]
+      ],
+      "expected_amount_minor": 232540352,
+      "issue_id": "ISS-01",
+      "tolerance_minor": 1162701,
+      "type": "period_cutoff"
+    },
+    {
+      "affected_ids": [
+        "INV-98370"
+      ],
+      "currency": "KZT",
+      "evidence_sets": [
+        [
+          "DOC-292253",
+          "JE-1311194"
+        ],
+        [
+          "DOC-292253",
+          "JE-6526894"
+        ]
+      ],
+      "expected_amount_minor": 221358340,
+      "issue_id": "ISS-02",
+      "tolerance_minor": 1106791,
+      "type": "period_cutoff"
+    }
+  ],
+  "schema_version": "1.0"
+}

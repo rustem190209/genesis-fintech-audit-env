@@ -1,0 +1,76 @@
+{
+  "episode_id": "ep-52fa4b2fba07",
+  "issues": [
+    {
+      "affected_ids": [
+        "SI-23606",
+        "SI-96760"
+      ],
+      "currency": "JPY",
+      "evidence_sets": [
+        [
+          "D-465489",
+          "D-721242"
+        ]
+      ],
+      "expected_amount_minor": 317389,
+      "issue_id": "ISS-01",
+      "tolerance_minor": 1586,
+      "type": "duplicate_invoice"
+    },
+    {
+      "affected_ids": [
+        "P-40669"
+      ],
+      "currency": "USD",
+      "evidence_sets": [
+        [
+          "2026-03-07:JPY:USD",
+          "D-569021",
+          "L-4144057"
+        ]
+      ],
+      "expected_amount_minor": 7767,
+      "issue_id": "ISS-02",
+      "tolerance_minor": 38,
+      "type": "fx_error"
+    },
+    {
+      "affected_ids": [
+        "P-39888"
+      ],
+      "currency": "USD",
+      "evidence_sets": [
+        [
+          "D-957267",
+          "L-5264067"
+        ]
+      ],
+      "expected_amount_minor": 243364,
+      "issue_id": "ISS-03",
+      "tolerance_minor": 1216,
+      "type": "payment_allocation"
+    },
+    {
+      "affected_ids": [
+        "SI-72833"
+      ],
+      "currency": "KZT",
+      "evidence_sets": [
+        [
+          "D-394739",
+          "L-1267654"
+        ],
+        [
+          "D-394739",
+          "L-2844214"
+        ]
+      ],
+      "expected_amount_minor": 142039524,
+      "issue_id": "ISS-04",
+      "tolerance_minor": 710197,
+      "type": "period_cutoff"
+    }
+  ],
+  "schema_version": "1.0"
+}
