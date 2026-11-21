@@ -1,38 +1,38 @@
 {
-  "episode_id": "ep-f9ac03f16163",
+  "episode_id": "ep-eebb89c6d240",
   "issues": [
     {
       "affected_ids": [
-        "INV-20537",
-        "INV-44123"
+        "BILL-11442",
+        "BILL-30917"
       ],
-      "currency": "GBP",
+      "currency": "JPY",
       "evidence_sets": [
         [
-          "D-676915",
-          "D-937400"
+          "DOC-277112",
+          "DOC-638959"
         ]
       ],
-      "expected_amount_minor": 440046,
+      "expected_amount_minor": 2754953,
       "issue_id": "ISS-01",
-      "tolerance_minor": 2200,
+      "tolerance_minor": 0,
       "type": "duplicate_invoice"
     },
     {
       "affected_ids": [
-        "INV-26550",
-        "INV-79919"
+        "BILL-78829",
+        "BILL-96647"
       ],
-      "currency": "GBP",
+      "currency": "EUR",
       "evidence_sets": [
         [
-          "D-260045",
-          "D-545270"
+          "DOC-404085",
+          "DOC-421235"
         ]
       ],
-      "expected_amount_minor": 1294130,
+      "expected_amount_minor": 1657330,
       "issue_id": "ISS-02",
-      "tolerance_minor": 6470,
+      "tolerance_minor": 0,
       "type": "duplicate_invoice"
     }
   ],

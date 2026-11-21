@@ -1,55 +1,55 @@
 {
-  "episode_id": "ep-4c9b8e71b479",
+  "episode_id": "ep-19f7412ff2ad",
   "issues": [
     {
       "affected_ids": [
-        "RCPT-26749"
+        "P-54253"
       ],
-      "currency": "EUR",
+      "currency": "KZT",
       "evidence_sets": [
         [
-          "2026-12-08:KZT:EUR",
-          "D-207624",
-          "JE-7318802"
+          "2026-05-21:EUR:KZT",
+          "D-680524",
+          "TX-7344295"
         ]
       ],
-      "expected_amount_minor": 10444,
+      "expected_amount_minor": 2828121,
       "issue_id": "ISS-01",
-      "tolerance_minor": 52,
+      "tolerance_minor": 0,
       "type": "fx_error"
     },
     {
       "affected_ids": [
-        "RCPT-41056"
+        "P-95308"
       ],
-      "currency": "EUR",
+      "currency": "KZT",
       "evidence_sets": [
         [
-          "2026-12-10:KZT:EUR",
-          "D-652422",
-          "JE-8976356"
+          "2026-05-17:EUR:KZT",
+          "D-255525",
+          "TX-8439570"
         ]
       ],
-      "expected_amount_minor": 10032,
+      "expected_amount_minor": 3564688,
       "issue_id": "ISS-02",
-      "tolerance_minor": 50,
+      "tolerance_minor": 0,
       "type": "fx_error"
     },
     {
       "affected_ids": [
-        "RCPT-49169"
+        "P-95617"
       ],
-      "currency": "EUR",
+      "currency": "KZT",
       "evidence_sets": [
         [
-          "2026-12-09:JPY:EUR",
-          "D-886400",
-          "JE-4845134"
+          "2026-05-24:GBP:KZT",
+          "D-761816",
+          "TX-7350812"
         ]
       ],
-      "expected_amount_minor": 52132,
+      "expected_amount_minor": 1597787,
       "issue_id": "ISS-03",
-      "tolerance_minor": 260,
+      "tolerance_minor": 0,
       "type": "fx_error"
     }
   ],

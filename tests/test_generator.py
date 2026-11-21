@@ -195,3 +195,25 @@ def test_files_roundtrip(tmp_path):
     assert (folder / "evaluator" / "truth.json").exists() and not (folder / "truth.json").exists()
     assert detect(loaded) == detect(open_data(ep))
     assert write_episode(ep, tmp_path / "ep2") and not (tmp_path / "ep2" / "evaluator").exists()
+
+
+# ---------------- явные варианты ошибок (жюри: «хотя бы один пропуск и один частичный случай» и т. п.)
+
+@pytest.mark.parametrize("error_type,mode,field", [
+    ("payment_allocation", "missing", "mode"), ("payment_allocation", "partial", "mode"),
+    ("fx_error", "wrong_date", "fx_variant"), ("fx_error", "wrong_rate", "fx_variant"),
+    ("period_cutoff", "end_late", "variant"), ("period_cutoff", "end_early", "variant"),
+    ("period_cutoff", "start_late", "variant"), ("period_cutoff", "start_early", "variant"),
+])
+def test_error_modes_can_be_requested_explicitly(error_type, mode, field):
+    for seed in (1, 2, 3):
+        ep = generate(seed, {"errors": {error_type: 2}, "error_modes": {error_type: mode}, "n_journal": 150})
+        assert check_episode(ep) == []
+        changes = ep.provenance["changes"]
+        values = [c["plan"][field] if field in ("mode", "fx_variant") else c[field] for c in changes]
+        assert values == [mode, mode]
+
+
+def test_unknown_error_mode_is_rejected():
+    with pytest.raises(ValueError):
+        generate(1, {"error_modes": {"fx_error": "sometimes"}})

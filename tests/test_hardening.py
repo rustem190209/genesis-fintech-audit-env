@@ -88,8 +88,8 @@ def test_null_findings_no_longer_scores_as_an_empty_answer():
     assert env.step({"tool": "submit", "args": {"findings": None}})[1] == -1.0
 
 
-@pytest.mark.parametrize("change", [{"type": "x" * 33}, {"currency": "USDUSDUSD"}, {"affected_ids": ["I" * 65]},
-                                    {"evidence_ids": ["E" * 65]}])
+@pytest.mark.parametrize("change", [{"type": "x" * 257}, {"currency": "U" * 257}, {"affected_ids": ["I" * 257]},
+                                    {"evidence_ids": ["E" * 257]}, {"affected_ids": ["I"] * 101}])
 def test_long_strings_are_a_structure_error(change):
     env = AuditEnv()
     env.reset(1, FULL)

@@ -1,55 +1,55 @@
 {
-  "episode_id": "ep-283c95d3a556",
+  "episode_id": "ep-b63a59b48c9d",
   "issues": [
     {
       "affected_ids": [
-        "SI-11292",
-        "SI-37318"
+        "SI-48712",
+        "SI-57170"
       ],
-      "currency": "KZT",
+      "currency": "GBP",
       "evidence_sets": [
         [
-          "DOC-619830",
-          "DOC-940168"
+          "DOC-867867",
+          "DOC-924875"
         ]
       ],
-      "expected_amount_minor": 808917134,
+      "expected_amount_minor": 1138573,
       "issue_id": "ISS-01",
-      "tolerance_minor": 4044585,
+      "tolerance_minor": 0,
       "type": "duplicate_invoice"
     },
     {
       "affected_ids": [
-        "SI-46341",
-        "SI-77271"
+        "SI-52986",
+        "SI-74064"
       ],
-      "currency": "EUR",
+      "currency": "GBP",
       "evidence_sets": [
         [
-          "DOC-623083",
-          "DOC-935683"
+          "DOC-538457",
+          "DOC-716138"
         ]
       ],
-      "expected_amount_minor": 1120315,
+      "expected_amount_minor": 1480470,
       "issue_id": "ISS-02",
-      "tolerance_minor": 5601,
+      "tolerance_minor": 0,
       "type": "duplicate_invoice"
     },
     {
       "affected_ids": [
-        "SI-55550",
-        "SI-64503"
+        "SI-62162",
+        "SI-99026"
       ],
-      "currency": "KZT",
+      "currency": "GBP",
       "evidence_sets": [
         [
-          "DOC-725174",
-          "DOC-956550"
+          "DOC-205603",
+          "DOC-614520"
         ]
       ],
-      "expected_amount_minor": 304435623,
+      "expected_amount_minor": 507003,
       "issue_id": "ISS-03",
-      "tolerance_minor": 1522178,
+      "tolerance_minor": 0,
       "type": "duplicate_invoice"
     }
   ],

@@ -152,7 +152,8 @@ def test_generation_time_counts_toward_the_limit():
     assert truncated and obs["error"]["code"] == "time_limit"
 
 
-def test_time_limit_counts_only_environment_time_not_agent_latency():
+def test_time_limit_includes_the_policy_time_between_steps():
+    """Определения жюри (C18): 60 секунд от начала reset до завершения, включая работу политики."""
     class Clock:
         t = 0.0
 
@@ -162,10 +163,11 @@ def test_time_limit_counts_only_environment_time_not_agent_latency():
     clock = Clock()
     env = AuditEnv(clock=clock)
     env.reset(1, FULL)
-    for _ in range(10):
-        clock.t += 100.0  # агент «думает» 100 секунд между шагами: на среду это не влияет
-        obs, _, terminated, truncated, _ = env.step(calc())
-        assert not truncated and obs["error"] is None
+    clock.t += 30.0  # агент думает 30 с
+    assert env.step(calc())[3] is False
+    clock.t += 31.0  # ещё 31 с: всего 61 с с начала reset
+    obs, _, terminated, truncated, _ = env.step(calc())
+    assert truncated and not terminated and obs["error"]["code"] == "time_limit"
 
 
 def test_submit_terminates_and_further_steps_raise():

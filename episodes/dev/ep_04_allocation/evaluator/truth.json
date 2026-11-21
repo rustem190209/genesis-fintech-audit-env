@@ -1,52 +1,52 @@
 {
-  "episode_id": "ep-58d33eb7ce19",
+  "episode_id": "ep-cd7410894cf5",
   "issues": [
     {
       "affected_ids": [
-        "PAY-47888"
-      ],
-      "currency": "USD",
-      "evidence_sets": [
-        [
-          "DOC-516033",
-          "L-3000950"
-        ]
-      ],
-      "expected_amount_minor": 1472555,
-      "issue_id": "ISS-01",
-      "tolerance_minor": 7362,
-      "type": "payment_allocation"
-    },
-    {
-      "affected_ids": [
-        "PAY-61658"
+        "RCPT-15299"
       ],
       "currency": "EUR",
       "evidence_sets": [
         [
-          "DOC-322461",
-          "L-2345109"
+          "DOC-572515",
+          "L-9508054"
         ]
       ],
-      "expected_amount_minor": 320946,
-      "issue_id": "ISS-02",
-      "tolerance_minor": 1604,
+      "expected_amount_minor": 606807,
+      "issue_id": "ISS-01",
+      "tolerance_minor": 0,
       "type": "payment_allocation"
     },
     {
       "affected_ids": [
-        "PAY-89224"
+        "RCPT-26591"
+      ],
+      "currency": "EUR",
+      "evidence_sets": [
+        [
+          "DOC-387146",
+          "L-4257957"
+        ]
+      ],
+      "expected_amount_minor": 647088,
+      "issue_id": "ISS-02",
+      "tolerance_minor": 0,
+      "type": "payment_allocation"
+    },
+    {
+      "affected_ids": [
+        "RCPT-51797"
       ],
       "currency": "GBP",
       "evidence_sets": [
         [
-          "DOC-474783",
-          "L-2122396"
+          "DOC-889092",
+          "L-2432343"
         ]
       ],
-      "expected_amount_minor": 651108,
+      "expected_amount_minor": 1376664,
       "issue_id": "ISS-03",
-      "tolerance_minor": 3255,
+      "tolerance_minor": 0,
       "type": "payment_allocation"
     }
   ],

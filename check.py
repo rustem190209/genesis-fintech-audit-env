@@ -36,17 +36,53 @@ def plan_digest() -> str:
     return digest.hexdigest()
 
 
+def judge_protocol(native_reports) -> list:
+    """Протокол жюри: эпизод в папку через generate_episode, 4 политики через make_env (closed, episode_dir)
+    и score_episode — награды должны совпасть с прямым прогоном; затем парная копия (перестановка записей
+    и/или смена ID): данные корректны, oracle с новыми ID получает те же метрики."""
+    import tempfile
+
+    import judge_adapter as ja
+    from audit_env.files import load_episode, load_truth
+    from audit_env.transform import map_findings, transform_episode
+
+    native = {(r["episode"], r["policy"]): r["reward"] for r in native_reports}
+    kinds = [(True, False), (False, True), (True, True)]
+    problems = []
+    with tempfile.TemporaryDirectory() as tmp:
+        for split, number, item in all_episodes():
+            label = f"{split}/{number:02d}_{item['name']}"
+            src, dst = os.path.join(tmp, f"{split}{number}"), os.path.join(tmp, f"{split}{number}_pair")
+            ja.generate_episode(item["seed"], item["config"], src)
+            for name in ("random_explorer", "simple_reconciler", "flag_all", "oracle"):
+                got = ja.run_policy(name, src)["return"]
+                if abs(got - native[(label, name)]) > 1e-9:
+                    problems.append(f"{label} {name}: через адаптер {got}, напрямую {native[(label, name)]}")
+            permute, remap = kinds[number % 3]
+            maps = transform_episode(src, dst, permute=permute, remap=remap, seed=item["seed"])
+            if check_episode(load_episode(dst, with_closed=True)):
+                problems.append(f"{label}: парная копия не прошла проверки данных")
+            truth = load_truth(src)
+            answer = {"episode_id": truth["episode_id"], "findings": [
+                {"type": i["type"], "affected_ids": i["affected_ids"], "claimed_amount_minor": i["expected_amount_minor"],
+                 "currency": i["currency"], "evidence_ids": i["evidence_sets"][0], "explanation": "oracle"}
+                for i in truth["issues"]]}
+            if ja.score_episode(src, answer, 5) != ja.score_episode(dst, map_findings(answer, maps), 5):
+                problems.append(f"{label}: oracle на парной копии получил другие метрики")
+    return problems
+
+
 def main() -> int:
     if "--digest" in sys.argv:  # служебный режим для проверки в отдельном процессе
         print(plan_digest())
         return 0
     failed = []
 
-    step("1/3 Тесты")
+    step("1/4 Тесты")
     if subprocess.call([sys.executable, "-m", "pytest"], cwd=ROOT) != 0:
         failed.append("тесты")
 
-    step("2/3 Эпизоды: данные, эталон, воспроизводимость")
+    step("2/4 Эпизоды: данные, эталон, воспроизводимость")
     bad = 0
     for split, number, item in all_episodes():
         ep = generate(item["seed"], item["config"])
@@ -70,7 +106,7 @@ def main() -> int:
     if not same:
         failed.append("воспроизводимость между процессами")
 
-    step("3/3 Базовые политики")
+    step("3/4 Базовые политики")
     reports = run_all()
     print(summary(reports))
     mean = lambda name: sum(r["reward"] for r in reports if r["policy"] == name) / sum(1 for r in reports if r["policy"] == name)
@@ -78,6 +114,15 @@ def main() -> int:
     print("  порядок наград oracle > simple_reconciler > random/flag_all:", "да" if ok else "НЕТ")
     if not ok:
         failed.append("порядок наград")
+
+    step("4/4 Адаптер жюри и парные проверки (judge_adapter.py)")
+    problems = judge_protocol(reports)
+    for line in problems[:10]:
+        print("  " + line)
+    print("  20 эпизодов через generate_episode и episode_dir; 4 политики в закрытом режиме; "
+          "парные варианты (перестановка, смена ID, оба):", "без расхождений" if not problems else f"ПРОБЛЕМ: {len(problems)}")
+    if problems:
+        failed.append("адаптер жюри")
 
     print()
     if failed:

@@ -1,14 +1,32 @@
-"""Проверка структуры выводов и общий matcher (взаимно однозначное сопоставление с эталоном).
+"""Проверка структуры findings.json и общий matcher по опубликованным «Определениям проверок FinTech».
 
-Правила сопоставления (открыты по требованию кейса):
-* Вывод и эталонная ошибка совпадают по ключу: тот же type и тот же набор affected_ids (порядок не важен).
-* TP требует ещё: ту же валюту; сумму в допуске tolerance_minor эталона; хотя бы один
-  полный допустимый набор доказательств внутри evidence_ids вывода.
-* Один эталон закрывается одним выводом. При нескольких кандидатах TP получает первый по порядку
-  в findings, который проходит ВСЕ проверки. Остальные (повторы, неточные) считаются FP.
-* Нормализация: type в нижнем регистре, пробелы по краям обрезаются, ID без дублей, валюта в верхнем регистре.
-* Лишние ID в evidence_ids допустимы, кроме противоречивых: если набор требует курс fx «ДАТА:SRC:DST»,
-  то курс той же пары на другую дату в выводе делает его неверным (нельзя перечислить все даты сразу).
+Нормализация (точные соглашения жюри):
+* ID сравниваются точно: с учётом регистра и пробелов, без обрезки и поиска похожих.
+* affected_ids — множество точных ID: порядок и повторы внутри списка не важны.
+  Для TP множество должно точно совпасть с каноническим набором эталонной ошибки.
+* evidence_ids — множество после проверки исходного лимита (10 элементов вместе с повторами).
+  TP требует полного включения хотя бы одного допустимого набора. Лишние СУЩЕСТВУЮЩИЕ доказательства
+  допустимы; несуществующий или недоступный ID делает вывод несопоставимым (FP).
+* type и currency — точное совпадение строк, без смены регистра и обрезки.
+* claimed_amount_minor — JSON-целое (не bool, не строка, не дробное); сравнение в минимальных единицах
+  с допуском τ эталона. τ = 0 для всех типов этой среды (суммы считаются точно, см. TOLERANCE).
+
+Канонические affected_ids по типам (публикуем заранее, в коде генератора и здесь):
+* duplicate_invoice  — {invoice_id оригинала, invoice_id дубля}
+* payment_allocation — {payment_id}
+* fx_error           — {payment_id}
+* period_cutoff      — {invoice_id}
+
+Структура против несовпадения:
+* Неверный тип значения, отсутствующее обязательное поле, превышение лимита (31 вывод, 11 ID
+  доказательств в выводе, explanation длиннее 1000 символов Unicode) — неверная структура всего submit,
+  награда -1. Лишние ключи игнорируются.
+* Структурно верный вывод с неправильным type, affected_ids, суммой, валютой или доказательствами — FP.
+
+Сопоставление: двудольный граф (выводы × ошибки эталона), ребро только при всех условиях TP,
+паросочетание максимальной мощности. Среди максимальных выбирается детерминированно: ошибки эталона
+по issue_id в порядке кодовых точек Unicode, для каждой — наименьший индекс вывода, при котором
+максимальная мощность ещё достижима. Порядок findings не меняет TP, FP, FN и награду.
 """
 from dataclasses import dataclass, field
 
@@ -16,10 +34,11 @@ from .reward import f1_score, precision, recall
 
 MAX_FINDINGS = 30
 MAX_EVIDENCE = 10
-MAX_AFFECTED = 10
 MAX_EXPLANATION = 1000
-MAX_ID_LEN, MAX_TYPE_LEN, MAX_CURRENCY_LEN = 64, 32, 8
-FINDING_KEYS = {"type", "affected_ids", "claimed_amount_minor", "currency", "evidence_ids", "explanation"}
+# Защита оценщика от огромного ввода (в кейсе не заданы; заведомо больше любого честного ответа)
+MAX_AFFECTED = 100
+MAX_STRING = 256
+REQUIRED_KEYS = ("type", "affected_ids", "claimed_amount_minor", "currency", "evidence_ids", "explanation")
 
 
 class StructureError(ValueError):
@@ -32,6 +51,7 @@ class MatchResult:
     fp: int
     fn: int
     matched_issue_ids: list = field(default_factory=list)
+    pairs: list = field(default_factory=list)  # [(issue_id, индекс вывода)]
 
     @property
     def precision(self):
@@ -46,90 +66,115 @@ class MatchResult:
         return f1_score(self.tp, self.fp, self.fn)
 
 
-def _id_list(value, name, limit, allow_empty):
+def _string(value, name):
+    if not isinstance(value, str):
+        raise StructureError(f"{name} must be a string")
+    if len(value) > MAX_STRING:
+        raise StructureError(f"{name} is longer than {MAX_STRING} characters")
+    return value
+
+
+def _string_list(value, name, limit):
     if not isinstance(value, list):
         raise StructureError(f"{name} must be a list of strings")
-    if len(value) > limit:  # длину проверяем до цикла: огромный список не должен подвешивать оценщика
+    if len(value) > limit:  # исходный размер, до удаления повторов (и до цикла: быстро на огромном вводе)
         raise StructureError(f"{name}: at most {limit} items")
-    if any(not isinstance(x, str) for x in value):
-        raise StructureError(f"{name} must be a list of strings")
-    cleaned = []
-    for item in value:
-        if len(item) > MAX_ID_LEN:
-            raise StructureError(f"{name}: id longer than {MAX_ID_LEN} characters")
-        item = item.strip()
-        if item and item not in cleaned:
-            cleaned.append(item)
-    if not cleaned and not allow_empty:
-        raise StructureError(f"{name} must not be empty")
-    return cleaned
+    return [_string(item, f"{name} item") for item in value]
 
 
 def validate_submission(payload, episode_id: str) -> list:
-    """Проверяет findings.json и возвращает нормализованные выводы. Бросает StructureError."""
-    if not isinstance(payload, dict) or set(payload) != {"episode_id", "findings"}:
-        raise StructureError("findings.json must be an object with keys episode_id and findings")
+    """Проверяет findings.json и возвращает выводы с множествами ID. Бросает StructureError."""
+    if not isinstance(payload, dict) or "episode_id" not in payload or "findings" not in payload:
+        raise StructureError("findings.json must be an object with episode_id and findings")
     if payload["episode_id"] != episode_id:
         raise StructureError("episode_id mismatch")
     findings = payload["findings"]
-    if not isinstance(findings, list) or len(findings) > MAX_FINDINGS:
-        raise StructureError(f"findings must be a list of at most {MAX_FINDINGS} items")
+    if not isinstance(findings, list):
+        raise StructureError("findings must be a list")
+    if len(findings) > MAX_FINDINGS:
+        raise StructureError(f"at most {MAX_FINDINGS} findings")
     result = []
     for raw in findings:
-        if not isinstance(raw, dict) or set(raw) != FINDING_KEYS:
-            raise StructureError("each finding needs exactly: " + ", ".join(sorted(FINDING_KEYS)))
+        if not isinstance(raw, dict):
+            raise StructureError("each finding must be an object")
+        missing = [key for key in REQUIRED_KEYS if key not in raw]
+        if missing:
+            raise StructureError("finding is missing: " + ", ".join(missing))
         amount = raw["claimed_amount_minor"]
-        if isinstance(amount, bool) or not isinstance(amount, int) or amount < 0:
-            raise StructureError("claimed_amount_minor must be a non-negative integer")
-        if not isinstance(raw["type"], str) or not isinstance(raw["currency"], str):
-            raise StructureError("type and currency must be strings")
-        if len(raw["type"]) > MAX_TYPE_LEN or len(raw["currency"]) > MAX_CURRENCY_LEN:
-            raise StructureError("type or currency is too long")
-        if not isinstance(raw["explanation"], str) or len(raw["explanation"]) > MAX_EXPLANATION:
+        if isinstance(amount, bool) or not isinstance(amount, int):
+            raise StructureError("claimed_amount_minor must be a JSON integer")
+        explanation = raw["explanation"]
+        if not isinstance(explanation, str) or len(explanation) > MAX_EXPLANATION:
             raise StructureError(f"explanation must be a string of at most {MAX_EXPLANATION} characters")
         result.append({
-            "type": raw["type"].strip().lower(),
-            "affected_ids": sorted(_id_list(raw["affected_ids"], "affected_ids", MAX_AFFECTED, False)),
+            "type": _string(raw["type"], "type"),
+            "affected_ids": frozenset(_string_list(raw["affected_ids"], "affected_ids", MAX_AFFECTED)),
             "claimed_amount_minor": amount,
-            "currency": raw["currency"].strip().upper(),
-            "evidence_ids": _id_list(raw["evidence_ids"], "evidence_ids", MAX_EVIDENCE, True),
-            "explanation": raw["explanation"],
+            "currency": _string(raw["currency"], "currency"),
+            "evidence_ids": frozenset(_string_list(raw["evidence_ids"], "evidence_ids", MAX_EVIDENCE)),
+            "explanation": explanation,
         })
     return result
 
 
-def _fx_pair(evidence_id: str):
-    """'2026-03-04:EUR:USD' -> ('EUR', 'USD'); для других ID -> None."""
-    parts = evidence_id.split(":")
-    if len(parts) == 3 and len(parts[0]) == 10 and parts[0][4] == "-" and parts[0][7] == "-":
-        return parts[1], parts[2]
-    return None
-
-
-def _contradicts(provided: set, required: set) -> bool:
-    """Противоречивые доказательства: в наборе есть нужный курс и ещё курс той же пары на другую дату.
-    Так нельзя «подстраховаться», вписав курсы на все возможные даты вместо выбора по правилу политики."""
-    pairs = {_fx_pair(x) for x in required} - {None}
-    return any(_fx_pair(x) in pairs and x not in required for x in provided)
-
-
-def _fully_matches(finding: dict, issue: dict) -> bool:
-    if finding["currency"] != issue["currency"]:
+def _is_edge(finding: dict, issue: dict, universe) -> bool:
+    """Все условия TP для пары (вывод, ошибка эталона)."""
+    if finding["type"] != issue["type"] or finding["currency"] != issue["currency"]:
         return False
-    if abs(finding["claimed_amount_minor"] - issue["expected_amount_minor"]) > issue["tolerance_minor"]:
+    if finding["affected_ids"] != frozenset(issue["affected_ids"]):
         return False
-    provided = set(finding["evidence_ids"])
-    return any(set(s) <= provided and not _contradicts(provided, set(s)) for s in issue["evidence_sets"])
+    if abs(finding["claimed_amount_minor"] - issue["expected_amount_minor"]) > issue.get("tolerance_minor", 0):
+        return False
+    evidence = finding["evidence_ids"]
+    if universe is not None and not evidence <= universe:
+        return False  # несуществующее или недоступное доказательство
+    return any(frozenset(s) <= evidence for s in issue["evidence_sets"])
 
 
-def match_findings(findings: list, issues: list) -> MatchResult:
-    """findings уже нормализованы validate_submission; issues — список из truth.json."""
-    by_key = {(i["type"], tuple(sorted(i["affected_ids"]))): i for i in issues}
-    taken, matched = set(), []
-    for finding in findings:
-        issue = by_key.get((finding["type"], tuple(finding["affected_ids"])))
-        if issue and issue["issue_id"] not in taken and _fully_matches(finding, issue):
-            taken.add(issue["issue_id"])
-            matched.append(issue["issue_id"])
-    tp = len(matched)
-    return MatchResult(tp=tp, fp=len(findings) - tp, fn=len(issues) - tp, matched_issue_ids=matched)
+def _max_matching(adj: dict, issues: list, used: frozenset) -> int:
+    """Мощность максимального паросочетания (алгоритм Куна) для issues без уже занятых выводов."""
+    owner = {}
+
+    def augment(issue, seen):
+        for f in adj[issue]:
+            if f in used or f in seen:
+                continue
+            seen.add(f)
+            if f not in owner or augment(owner[f], seen):
+                owner[f] = issue
+                return True
+        return False
+
+    return sum(1 for issue in issues if augment(issue, set()))
+
+
+def match_findings(findings: list, issues: list, universe=None) -> MatchResult:
+    """findings — результат validate_submission; issues — список из truth.json;
+    universe — множество всех существующих ID записей эпизода (None — не проверять существование)."""
+    universe = frozenset(universe) if universe is not None else None
+    order = sorted(issues, key=lambda i: i["issue_id"])
+    ids = [i["issue_id"] for i in order]
+    adj = {i["issue_id"]: [n for n, f in enumerate(findings) if _is_edge(f, i, universe)] for i in order}
+    best = _max_matching(adj, ids, frozenset())
+    pairs, used = [], frozenset()
+    for k, issue_id in enumerate(ids):
+        for n in adj[issue_id]:
+            if n in used:
+                continue
+            if len(pairs) + 1 + _max_matching(adj, ids[k + 1:], used | {n}) == best:
+                pairs.append((issue_id, n))
+                used = used | {n}
+                break
+    tp = len(pairs)
+    return MatchResult(tp=tp, fp=len(findings) - tp, fn=len(issues) - tp,
+                       matched_issue_ids=[p[0] for p in pairs], pairs=pairs)
+
+
+def evidence_universe(data: dict) -> frozenset:
+    """Все ID, по которым агент может получить запись инструментами: row_id, invoice_id, payment_id,
+    doc_id и id курса 'ДАТА:SRC:DST'."""
+    ids = {r["row_id"] for r in data["ledger"]}
+    ids |= {i["invoice_id"] for i in data["invoices"]} | {i["doc_id"] for i in data["invoices"]}
+    ids |= {p["payment_id"] for p in data["payments"]} | {p["doc_id"] for p in data["payments"]}
+    ids |= {f"{r['date']}:{r['source_currency']}:{r['target_currency']}" for r in data["fx"]}
+    return frozenset(ids)

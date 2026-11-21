@@ -111,8 +111,9 @@ def test_line_item_wording_does_not_separate_distractors():
     assert {"week", "order", "month"} <= set(styles)  # все шаблоны встречаются у обычных счетов тоже
 
 
-def test_listing_every_fx_date_as_evidence_is_not_accepted():
-    """Трюк: вписать курсы на дату UTC и на дату компании, чтобы не выбирать по правилу политики."""
+def test_fx_hedging_still_needs_the_exact_amount():
+    """Определения жюри разрешают лишние существующие доказательства, поэтому вписать курсы на две даты можно.
+    Но сумма сравнивается точно (τ=0): без пересчёта по правилу даты из policy верную сумму не получить."""
     env = AuditEnv()
     _, info = env.reset(3, FULL)
     truth = env.evaluator_truth()
@@ -120,13 +121,17 @@ def test_listing_every_fx_date_as_evidence_is_not_accepted():
     fx_id = next(e for e in issue["evidence_sets"][0] if e.count(":") == 2)
     day, src, dst = fx_id.split(":")
     other_day = (tu.parse_ts(day + "T12:00:00+00:00") - timedelta(days=1)).date().isoformat()
-    hedged = finding_from_issue(issue, evidence_ids=issue["evidence_sets"][0] + [f"{other_day}:{src}:{dst}"])
-    env.step(submit(info["episode_id"], [hedged]))
-    assert env.final_report()["tp"] == 0
+    hedged = issue["evidence_sets"][0] + [f"{other_day}:{src}:{dst}"]
+    env.step(submit(info["episode_id"], [finding_from_issue(issue, evidence_ids=hedged)]))
+    assert env.final_report()["tp"] == 1  # лишний существующий курс допустим
     env.reset(3, FULL)
-    unrelated = finding_from_issue(issue, evidence_ids=issue["evidence_sets"][0] + ["DOC-unrelated"])
-    env.step(submit(info["episode_id"], [unrelated]))
-    assert env.final_report()["tp"] == 1  # лишний посторонний ID не наказывается, противоречивый курс — да
+    off_by_one = finding_from_issue(issue, evidence_ids=hedged, claimed_amount_minor=issue["expected_amount_minor"] + 1)
+    env.step(submit(info["episode_id"], [off_by_one]))
+    assert env.final_report()["tp"] == 0  # сумма «примерно» не засчитывается
+    env.reset(3, FULL)
+    fake = finding_from_issue(issue, evidence_ids=issue["evidence_sets"][0] + ["DOC-unrelated"])
+    env.step(submit(info["episode_id"], [fake]))
+    assert env.final_report()["tp"] == 0  # несуществующий ID в доказательствах
 
 
 @pytest.mark.parametrize("seed", range(1, 6))

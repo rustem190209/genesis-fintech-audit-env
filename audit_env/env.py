@@ -15,15 +15,18 @@ calculator, submit. Свободного shell, SQL, файловой систе
 в том же процессе и держит объект env, он до них дотянется. Настоящая изоляция даёт только запуск
 среды отдельным процессом (audit_env.server): агент видит лишь ответы на команды.
 
-Лимит времени (60 с) считает время работы самой среды: генерацию в reset и обработку каждого step.
-Задержки между вызовами (например, ответ языковой модели) не входят: иначе награда зависела бы от
-скорости агента. Шаг, на котором лимит превышен, сразу усекает эпизод (truncated, пустой ответ).
+Лимит времени (60 с) — по определениям проверок жюри: от начала reset до завершения эпизода,
+включая работу политики между вызовами. Шаг, на котором лимит превышен (в том числе submit),
+усекает эпизод: truncated=true, итоговый ответ пустой.
 """
 import copy
 import time
 
-from . import calculator, generator
+from pathlib import Path
+
+from . import calculator, files, generator
 from .grader.evaluator import Evaluator
+from .grader.matcher import StructureError, evidence_universe, validate_submission
 
 MAX_STEPS = 100
 TIME_LIMIT_S = 60.0
@@ -43,8 +46,10 @@ Tools (each call costs one step; max 100 steps including submit; unknown ids/too
 
 finding = {type, affected_ids, claimed_amount_minor, currency, evidence_ids, explanation}
   max 30 findings, 10 evidence ids, 1000 characters of explanation; no other keys.
-  Amounts are integers in minor units, tolerance max(1, 0.5% of the true amount). Repeats count as false positives.
-  evidence_ids: doc_id, ledger row_id or fx id that prove the finding. A finding is correct only with a sufficient set.
+  Amounts are integers in minor units and must match exactly (tolerance 0). Repeats count as false positives.
+  IDs, type and currency are compared exactly (case and spaces matter). affected_ids is a set.
+  evidence_ids: existing doc_id, invoice_id, payment_id, ledger row_id or fx id that prove the finding. A finding is
+  correct only with a sufficient set; extra existing ids are fine, an id that does not exist makes it wrong.
 
 Types:
   duplicate_invoice  affected_ids = [original invoice_id, duplicate invoice_id]; amount = invoice total; currency = invoice
@@ -59,6 +64,11 @@ Reward = clip(2*F1 - 1 - 0.002*inspection_steps, -1, 1).
 """
 
 
+def _has_truth(folder) -> bool:
+    folder = Path(folder)
+    return (folder / files.CLOSED_DIR / "truth.json").is_file() or (folder / "truth.json").is_file()
+
+
 class ToolError(Exception):
     def __init__(self, code: str, message: str):
         super().__init__(message)
@@ -67,6 +77,9 @@ class ToolError(Exception):
 
 def _short(value, limit=40):
     return str(value)[:limit]
+
+
+JUDGE_KEYS = frozenset({"mode", "episode_dir", "team_config"})
 
 
 class AuditEnv:
@@ -78,9 +91,30 @@ class AuditEnv:
         self._state = None
 
     # ------------------------------------------------------------ жизненный цикл
+    def _load(self, seed, config):
+        """Откуда взять эпизод и в каком режиме играть.
+
+        Конфиг жюри: {"mode": "closed"|"train", "episode_dir": "<папка>", "team_config": {...}}.
+          * episode_dir задан — эпизод загружается из папки как есть (ID и порядок не меняются).
+            В закрытом режиме эталон не читается вовсе: оценку делает score_episode у жюри.
+          * episode_dir нет — эпизод генерируется по seed и team_config.
+        Любой другой config — это config генератора (режим берётся из AuditEnv(mode=...)).
+        """
+        if isinstance(config, dict) and config and set(config) <= JUDGE_KEYS:
+            name = config.get("mode", "train")
+            if name not in ("train", "open", "closed"):
+                raise ValueError("mode must be 'closed' or 'train'")
+            mode = "closed" if name == "closed" else "open"
+            if config.get("episode_dir"):
+                folder = config["episode_dir"]
+                closed_needed = mode == "open" and _has_truth(folder)
+                return mode, files.load_episode(folder, with_closed=closed_needed)
+            return mode, generator.generate(seed, config.get("team_config"))
+        return self.mode, generator.generate(seed, config)
+
     def reset(self, seed: int = 0, config: dict | None = None):
-        began = self._clock()
-        episode = generator.generate(seed, config)
+        started = self._clock()  # лимит времени эпизода считается от начала reset
+        mode, episode = self._load(seed, config)
         tables = {"ledger": episode.ledger,
                   "invoices": [{k: v for k, v in i.items() if k != "line_items"} for i in episode.invoices],
                   "payments": episode.payments,
@@ -93,13 +127,32 @@ class AuditEnv:
         }
         docs = {i["doc_id"]: ("invoice", i) for i in episode.invoices}
         docs.update({p["doc_id"]: ("payment", p) for p in episode.payments})
-        self._state = {"episode": episode, "tables": tables, "index": index, "docs": docs, "step": 0, "done": False,
-                       "busy": 0.0, "evaluator": Evaluator(episode.truth), "report": None}
-        self._state["busy"] = self._clock() - began  # время генерации тоже входит в лимит эпизода
+        evaluator = None
+        if episode.truth is not None:
+            evaluator = Evaluator(episode.truth, evidence_universe(
+                {"ledger": episode.ledger, "invoices": episode.invoices, "payments": episode.payments, "fx": episode.fx}))
+        self._state = {"episode": episode, "mode": mode, "tables": tables, "index": index, "docs": docs, "step": 0,
+                       "done": False, "started": started, "evaluator": evaluator, "report": None, "submission": None}
         obs = {"task": TASK, "manifest": copy.deepcopy(episode.manifest), "policy": copy.deepcopy(episode.policy),
                "tables": {name: len(rows) for name, rows in tables.items()},
                "step": 0, "budget_remaining": MAX_STEPS, "result": None, "error": None}
         return obs, {"episode_id": episode.episode_id}
+
+    def _elapsed(self):
+        return self._clock() - self._state["started"]
+
+    def _grade(self, payload, inspection_steps):
+        """Оценка ответа. Без эталона (закрытый режим из папки) — только проверка структуры."""
+        state = self._state
+        if state["evaluator"] is not None:
+            return state["evaluator"].grade(payload, inspection_steps)
+        try:
+            validate_submission(payload, state["episode"].episode_id)
+            status, problem = "submitted", None
+        except StructureError as exc:
+            status, problem = "invalid", str(exc)
+        return {"status": status, "error": problem, "scored": False, "reward": -1.0 if status == "invalid" else 0.0,
+                "inspection_steps": inspection_steps}
 
     def step(self, action):
         state = self._state
@@ -107,22 +160,21 @@ class AuditEnv:
             raise RuntimeError("call reset() first")
         if state["done"]:
             raise RuntimeError("episode is over; call reset()")
-        began = self._clock()
         state["step"] += 1
         step = state["step"]
         result = error = None
         terminated = truncated = False
         report = None
 
-        if state["busy"] > TIME_LIMIT_S:
+        if self._elapsed() > TIME_LIMIT_S:
             truncated, error = True, {"code": "time_limit", "message": "time limit reached"}
-            report = state["evaluator"].grade_empty(step)
         else:
             try:
                 tool, args = self._parse(action)
                 if tool == "submit":
                     terminated = True
-                    report = state["evaluator"].grade(self._submission(args), step - 1)
+                    state["submission"] = self._submission(args)
+                    report = self._grade(state["submission"], step - 1)
                     if report["status"] == "invalid":
                         error = {"code": "invalid_submission", "message": "submission rejected"}
                     else:
@@ -133,21 +185,20 @@ class AuditEnv:
                 error = {"code": exc.code, "message": exc.message}
             if not terminated and step >= MAX_STEPS:
                 truncated = True  # лимит шагов: итоговый ответ пустой
-                report = state["evaluator"].grade_empty(step)
-
-        state["busy"] += self._clock() - began
-        if not truncated and state["busy"] > TIME_LIMIT_S:
-            # лимит превышен на этом шаге (даже если это submit): эпизод усечён, ответ пустой
-            terminated, truncated = False, True
-            result, error = None, {"code": "time_limit", "message": "time limit reached"}
-            report = state["evaluator"].grade_empty(step)
+            if self._elapsed() > TIME_LIMIT_S:
+                # лимит превышен на этом шаге (даже если это submit): эпизод усечён, ответ пустой
+                terminated, truncated = False, True
+                result, error = None, {"code": "time_limit", "message": "time limit reached"}
+        if truncated:
+            state["submission"] = None
+            report = self._grade({"episode_id": state["episode"].episode_id, "findings": []}, step)
         done = terminated or truncated
         if done:
             state["done"] = True
             report.update({"episode_id": state["episode"].episode_id, "steps": step, "terminated": terminated,
-                           "truncated": truncated, "elapsed_s": round(state["busy"], 3)})
+                           "truncated": truncated, "elapsed_s": round(self._elapsed(), 3)})
             state["report"] = report
-        reward = report["reward"] if done and self.mode == "open" else 0.0
+        reward = report["reward"] if done and state["mode"] == "open" else 0.0
         obs = {"step": step, "budget_remaining": max(MAX_STEPS - step, 0), "result": result, "error": error}
         return obs, float(reward), terminated, truncated, {"episode_id": state["episode"].episode_id, "step": step}
 
@@ -157,13 +208,17 @@ class AuditEnv:
         if self._state is None or not self._state["done"]:
             raise RuntimeError("the episode is not finished")
         report = dict(self._state["report"])
-        report["evaluator_log"] = list(self._state["evaluator"].log)
+        evaluator = self._state["evaluator"]
+        report["evaluator_log"] = list(evaluator.log) if evaluator else []
+        report["submission"] = copy.deepcopy(self._state["submission"])
         return report
 
     def evaluator_truth(self) -> dict:
         """Закрытый эталон для oracle и тестов. Среда не включает его ни в одно наблюдение."""
         if self._state is None:
             raise RuntimeError("call reset() first")
+        if self._state["evaluator"] is None:
+            raise RuntimeError("this episode was loaded without the evaluator files")
         return self._state["evaluator"].truth()
 
     # ------------------------------------------------------------ инструменты

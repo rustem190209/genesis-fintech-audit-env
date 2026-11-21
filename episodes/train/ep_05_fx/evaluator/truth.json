@@ -1,38 +1,38 @@
 {
-  "episode_id": "ep-8443433729d3",
+  "episode_id": "ep-a6215555ba85",
   "issues": [
     {
       "affected_ids": [
-        "P-20307"
+        "RCPT-62637"
       ],
       "currency": "EUR",
       "evidence_sets": [
         [
-          "2026-03-11:USD:EUR",
-          "D-833765",
-          "TX-9621342"
+          "2026-10-10:GBP:EUR",
+          "D-283365",
+          "TX-4840003"
         ]
       ],
-      "expected_amount_minor": 15135,
+      "expected_amount_minor": 1006,
       "issue_id": "ISS-01",
-      "tolerance_minor": 75,
+      "tolerance_minor": 0,
       "type": "fx_error"
     },
     {
       "affected_ids": [
-        "P-81715"
+        "RCPT-93049"
       ],
       "currency": "EUR",
       "evidence_sets": [
         [
-          "2026-03-14:USD:EUR",
-          "D-422469",
-          "TX-2177600"
+          "2026-10-22:GBP:EUR",
+          "D-616208",
+          "TX-9683469"
         ]
       ],
-      "expected_amount_minor": 7429,
+      "expected_amount_minor": 5609,
       "issue_id": "ISS-02",
-      "tolerance_minor": 37,
+      "tolerance_minor": 0,
       "type": "fx_error"
     }
   ],

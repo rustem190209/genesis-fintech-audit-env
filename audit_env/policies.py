@@ -13,6 +13,21 @@ from .grader.validate import detect
 FINDING_TYPES = ("duplicate_invoice", "payment_allocation", "fx_error", "period_cutoff")
 
 
+COUNT_KEYS = {"ledger": "ledger_rows", "invoices": "invoices", "payments": "payments", "fx": "fx_rows"}
+
+
+def table_size(first_observation, table):
+    """Размер таблицы: из нашего наблюдения (tables) или из manifest (формат жюри без tables)."""
+    if "tables" in first_observation:
+        return first_observation["tables"][table]
+    return first_observation["manifest"]["counts"][COUNT_KEYS[table]]
+
+
+def budget(observation):
+    """Остаток шагов в нашем формате (budget_remaining) или в формате жюри (remaining_steps)."""
+    return observation.get("budget_remaining", observation.get("remaining_steps", 0))
+
+
 def _submit(episode_id, findings):
     return {"tool": "submit", "args": {"findings": {"episode_id": episode_id, "findings": findings}}}
 
@@ -56,7 +71,7 @@ class RandomExplorer(Policy):
         if self.todo > 0:
             self.todo -= 1
             table = self.rng.choice(TABLES)
-            total = self.first["tables"][table]
+            total = table_size(self.first, table)
             cursor = None if self.rng.random() < 0.4 else str(self.rng.randrange(0, max(total, 1)))
             return {"tool": "list_records", "args": {"table": table, "cursor": cursor, "limit": self.rng.randint(5, 50)}}
         findings = []
@@ -92,7 +107,7 @@ class SimpleReconciler(Policy):
             self.data[self.current].extend(result["records"])
             if result["next_cursor"] is not None:
                 self.queue.insert(0, (self.current, result["next_cursor"]))
-        if self.queue and observation["budget_remaining"] > 1:
+        if self.queue and budget(observation) > 1:
             self.current, cursor = self.queue.pop(0)
             return {"tool": "list_records", "args": {"table": self.current, "cursor": cursor, "limit": 50}}
         try:

@@ -1,18 +1,18 @@
 {
   "base_currency": "KZT",
   "counts": {
-    "documents": 144,
+    "documents": 138,
     "fx_rows": 110,
     "invoices": 92,
-    "ledger_rows": 790,
-    "payments": 52
+    "ledger_rows": 778,
+    "payments": 46
   },
   "currency_exponents": {
     "EUR": 2,
-    "KZT": 2,
-    "USD": 2
+    "JPY": 0,
+    "KZT": 2
   },
-  "episode_id": "ep-6c1bb57e2775",
+  "episode_id": "ep-9cefd1f63fa1",
   "files": [
     "ledger.csv",
     "invoices.jsonl",
@@ -20,12 +20,12 @@
     "fx.csv",
     "policy.json"
   ],
-  "period_end": "2026-10-01T00:00:00+06:00",
-  "period_start": "2026-09-01T00:00:00+06:00",
+  "period_end": "2026-07-01T00:00:00+05:00",
+  "period_start": "2026-06-01T00:00:00+05:00",
   "rounding": {
     "mode": "half_up",
     "unit": "minor units of the target currency"
   },
   "schema_version": "1.0",
-  "timezone": "+06:00"
+  "timezone": "+05:00"
 }

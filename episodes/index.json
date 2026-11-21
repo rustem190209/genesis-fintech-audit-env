@@ -5,10 +5,10 @@
       "n_journal": 80
     },
     "dir": "train/ep_01_clean_small",
-    "documents": 107,
-    "episode_id": "ep-97609d377efe",
+    "documents": 111,
+    "episode_id": "ep-f7b0fb764fde",
     "issues": 0,
-    "ledger_rows": 376,
+    "ledger_rows": 384,
     "seed": 101,
     "split": "train"
   },
@@ -18,10 +18,10 @@
       "n_journal": 600
     },
     "dir": "train/ep_02_clean_large",
-    "documents": 141,
-    "episode_id": "ep-fa4ca1be9d12",
+    "documents": 133,
+    "episode_id": "ep-8811d3e63109",
     "issues": 0,
-    "ledger_rows": 1484,
+    "ledger_rows": 1468,
     "seed": 102,
     "split": "train"
   },
@@ -33,10 +33,10 @@
       "n_journal": 120
     },
     "dir": "train/ep_03_duplicates",
-    "documents": 140,
-    "episode_id": "ep-f9ac03f16163",
+    "documents": 147,
+    "episode_id": "ep-eebb89c6d240",
     "issues": 2,
-    "ledger_rows": 522,
+    "ledger_rows": 536,
     "seed": 103,
     "split": "train"
   },
@@ -48,10 +48,10 @@
       "n_journal": 120
     },
     "dir": "train/ep_04_allocation",
-    "documents": 135,
-    "episode_id": "ep-9333965513a7",
+    "documents": 138,
+    "episode_id": "ep-40f72358f045",
     "issues": 2,
-    "ledger_rows": 513,
+    "ledger_rows": 520,
     "seed": 104,
     "split": "train"
   },
@@ -63,10 +63,10 @@
       "n_journal": 120
     },
     "dir": "train/ep_05_fx",
-    "documents": 136,
-    "episode_id": "ep-8443433729d3",
+    "documents": 138,
+    "episode_id": "ep-a6215555ba85",
     "issues": 2,
-    "ledger_rows": 514,
+    "ledger_rows": 518,
     "seed": 105,
     "split": "train"
   },
@@ -78,10 +78,10 @@
       "n_journal": 120
     },
     "dir": "train/ep_06_cutoff",
-    "documents": 140,
-    "episode_id": "ep-a02093667a9c",
+    "documents": 142,
+    "episode_id": "ep-74a729167b72",
     "issues": 2,
-    "ledger_rows": 522,
+    "ledger_rows": 526,
     "seed": 106,
     "split": "train"
   },
@@ -96,10 +96,10 @@
       "n_journal": 200
     },
     "dir": "train/ep_07_all_four",
-    "documents": 135,
-    "episode_id": "ep-1681a138e0d8",
+    "documents": 143,
+    "episode_id": "ep-2dc58fa37a93",
     "issues": 4,
-    "ledger_rows": 673,
+    "ledger_rows": 688,
     "seed": 107,
     "split": "train"
   },
@@ -114,10 +114,10 @@
       "n_journal": 300
     },
     "dir": "train/ep_08_all_four_x2",
-    "documents": 150,
-    "episode_id": "ep-2ebfdc0886b7",
+    "documents": 148,
+    "episode_id": "ep-a4e6aa7c257e",
     "issues": 8,
-    "ledger_rows": 903,
+    "ledger_rows": 898,
     "seed": 108,
     "split": "train"
   },
@@ -130,10 +130,10 @@
       "n_journal": 200
     },
     "dir": "train/ep_09_interacting",
-    "documents": 136,
-    "episode_id": "ep-b0117a26e260",
+    "documents": 140,
+    "episode_id": "ep-9ebd2f8e9fa7",
     "issues": 4,
-    "ledger_rows": 675,
+    "ledger_rows": 683,
     "seed": 109,
     "split": "train"
   },
@@ -153,10 +153,10 @@
       "n_journal": 700
     },
     "dir": "train/ep_10_mixed_large",
-    "documents": 163,
-    "episode_id": "ep-243a91493f65",
+    "documents": 170,
+    "episode_id": "ep-b335e8adb457",
     "issues": 8,
-    "ledger_rows": 1729,
+    "ledger_rows": 1742,
     "seed": 110,
     "split": "train"
   },
@@ -166,10 +166,10 @@
       "n_journal": 100
     },
     "dir": "dev/ep_01_clean_a",
-    "documents": 128,
-    "episode_id": "ep-48d59f3050f6",
+    "documents": 121,
+    "episode_id": "ep-561fcddae6d7",
     "issues": 0,
-    "ledger_rows": 458,
+    "ledger_rows": 444,
     "seed": 201,
     "split": "dev"
   },
@@ -180,10 +180,10 @@
       "n_journal": 400
     },
     "dir": "dev/ep_02_clean_b",
-    "documents": 115,
-    "episode_id": "ep-7ec991b19774",
+    "documents": 116,
+    "episode_id": "ep-08148c1b86c3",
     "issues": 0,
-    "ledger_rows": 1032,
+    "ledger_rows": 1034,
     "seed": 202,
     "split": "dev"
   },
@@ -195,10 +195,10 @@
       "n_journal": 150
     },
     "dir": "dev/ep_03_duplicates",
-    "documents": 146,
-    "episode_id": "ep-283c95d3a556",
+    "documents": 151,
+    "episode_id": "ep-b63a59b48c9d",
     "issues": 3,
-    "ledger_rows": 594,
+    "ledger_rows": 604,
     "seed": 203,
     "split": "dev"
   },
@@ -211,10 +211,10 @@
       "n_journal": 150
     },
     "dir": "dev/ep_04_allocation",
-    "documents": 141,
-    "episode_id": "ep-58d33eb7ce19",
+    "documents": 143,
+    "episode_id": "ep-cd7410894cf5",
     "issues": 3,
-    "ledger_rows": 586,
+    "ledger_rows": 588,
     "seed": 204,
     "split": "dev"
   },
@@ -226,10 +226,10 @@
       "n_journal": 150
     },
     "dir": "dev/ep_05_fx",
-    "documents": 132,
-    "episode_id": "ep-4c9b8e71b479",
+    "documents": 150,
+    "episode_id": "ep-19f7412ff2ad",
     "issues": 3,
-    "ledger_rows": 566,
+    "ledger_rows": 602,
     "seed": 205,
     "split": "dev"
   },
@@ -241,10 +241,10 @@
       "n_journal": 150
     },
     "dir": "dev/ep_06_cutoff",
-    "documents": 147,
-    "episode_id": "ep-c4f956873bfa",
+    "documents": 136,
+    "episode_id": "ep-718ee7fa7b6e",
     "issues": 3,
-    "ledger_rows": 596,
+    "ledger_rows": 574,
     "seed": 206,
     "split": "dev"
   },
@@ -260,10 +260,10 @@
       "n_journal": 250
     },
     "dir": "dev/ep_07_all_four",
-    "documents": 136,
-    "episode_id": "ep-639f4f1209ba",
+    "documents": 149,
+    "episode_id": "ep-800de0fe8ee6",
     "issues": 4,
-    "ledger_rows": 774,
+    "ledger_rows": 800,
     "seed": 207,
     "split": "dev"
   },
@@ -278,10 +278,10 @@
       "n_journal": 400
     },
     "dir": "dev/ep_08_all_four_x3",
-    "documents": 159,
-    "episode_id": "ep-f73aba1df1b1",
+    "documents": 157,
+    "episode_id": "ep-f675ccc60536",
     "issues": 12,
-    "ledger_rows": 1122,
+    "ledger_rows": 1117,
     "seed": 208,
     "split": "dev"
   },
@@ -295,10 +295,10 @@
       "n_journal": 250
     },
     "dir": "dev/ep_09_interacting",
-    "documents": 144,
-    "episode_id": "ep-6c1bb57e2775",
+    "documents": 138,
+    "episode_id": "ep-9cefd1f63fa1",
     "issues": 4,
-    "ledger_rows": 790,
+    "ledger_rows": 778,
     "seed": 209,
     "split": "dev"
   },
@@ -315,10 +315,10 @@
       "n_journal": 500
     },
     "dir": "dev/ep_10_mixed",
-    "documents": 150,
-    "episode_id": "ep-8f9b42074312",
+    "documents": 158,
+    "episode_id": "ep-07df4ca524e0",
     "issues": 5,
-    "ledger_rows": 1303,
+    "ledger_rows": 1318,
     "seed": 210,
     "split": "dev"
   }

@@ -26,6 +26,13 @@ GEN_VERSION = "1.0.0"
 SCHEMA_VERSION = "1.0"
 ERROR_TYPES = ("duplicate_invoice", "payment_allocation", "fx_error", "period_cutoff")
 INTERACTIONS = ("fx_boundary_partial", "dup_cutoff")
+# Режимы, которые можно задать явно (config.error_modes); "random" — выбор генератора
+ERROR_MODES = {"payment_allocation": ("random", "missing", "partial"),
+               "fx_error": ("random", "wrong_date", "wrong_rate"),
+               "period_cutoff": ("random", "end_late", "end_early", "start_late", "start_early")}
+# Допуск суммы τ по типам (определения проверок: по умолчанию 0). Все суммы этой среды считаются точно:
+# итог счёта, остаток в UNAPPLIED и разница пересчёта по правилу округления из policy.json.
+TOLERANCE = {"duplicate_invoice": 0, "payment_allocation": 0, "fx_error": 0, "period_cutoff": 0}
 MAX_ISSUES = 12
 MIN_LEDGER, MAX_LEDGER, MAX_DOCUMENTS = 200, 2000, 200  # предложенные кейсом размеры эпизода
 ADJ_DAYS = 5  # сколько дней вокруг периода попадает в журнал (контекст)
@@ -64,6 +71,7 @@ def default_config() -> dict:
         "distractors": {"split_payments": 2, "refunds": 2, "recurring": 2, "deposits": 2,
                         "tz_boundary": 3, "fx_clean_near_midnight": 2, "repeated_amounts": 2,
                         "multi_invoice_payments": 2, "fx_partial": 2},
+        "error_modes": {name: "random" for name in ERROR_MODES},
         "variant": {"id_salt": "", "shuffle": False},
     }
 
@@ -101,6 +109,9 @@ def merge_config(config: dict | None) -> dict:
         raise ValueError(f"interactions must be a list of unique values from {INTERACTIONS}")
     if sum(cfg["errors"].values()) + 2 * len(interactions) > MAX_ISSUES:
         raise ValueError(f"too many issues (max {MAX_ISSUES})")
+    for name, mode in cfg["error_modes"].items():
+        if mode not in ERROR_MODES[name]:
+            raise ValueError(f"error_modes.{name} must be one of {ERROR_MODES[name]}")
     _check_int(cfg["n_invoices"], "n_invoices", 20, 80)
     _check_int(cfg["n_journal"], "n_journal", 0, 800)
     if cfg["base_currency"] not in (None, "USD", "EUR", "KZT"):
@@ -487,12 +498,15 @@ class _Builder:
             cur, amount = inv["currency"], inv["total"]
         plan = {"alloc": alloc, "fx": fx}
         if alloc:
-            plan["mode"] = self.h.choice(["missing", "partial"])
+            wanted = self.cfg["error_modes"]["payment_allocation"]
+            plan["mode"] = self.h.choice(["missing", "partial"]) if wanted == "random" else wanted
             plan["fraction"] = self.h.uniform(0.3, 0.75)
         if fx:
             good = Decimal(self.rate_for(cur, ts)[0])
-            wrong_date = self.pick_wrong_date(cur, ts, good)
-            if wrong_date and self.h.random() < 0.7:  # курс взят на «не ту» дату (реальный курс из fx.csv)
+            wanted = self.cfg["error_modes"]["fx_error"]
+            wrong_date = self.pick_wrong_date(cur, ts, good) if wanted != "wrong_rate" else None
+            use_date = wrong_date and (wanted == "wrong_date" or self.h.random() < 0.7)
+            if use_date:  # курс взят на «не ту» дату (реальный курс из fx.csv)
                 plan["wrong_rate"], plan["fx_variant"], plan["wrong_date"] = self.fx[(cur, wrong_date)], "wrong_date", wrong_date
             else:  # курс с опечаткой
                 factor = 1 + self.h.choice([-1, 1]) * self.h.uniform(0.01, 0.04)
@@ -501,22 +515,24 @@ class _Builder:
         self.plants.append({"kind": "payment_plan", "pay": pay["key"], "alloc": alloc, "fx": fx, "inter": inter})
 
     def pick_wrong_date(self, cur, ts, good):
-        """Дата, курс которой заметно (>= 0.8%) отличается от верного: дата по другому правилу или
-        одна из 7 предыдущих. Таблицу курсов не трогаем: в fx.csv не должно быть искусственных скачков."""
+        """Дата, курс которой заметно (>= 0.3%) отличается от верного: дата по другому правилу или
+        одна из соседних (до 10 дней раньше или позже). Таблицу курсов не трогаем: в fx.csv не должно
+        быть искусственных скачков."""
         correct = tu.fx_date(ts, self.fx_rule, self.company_tz)
         candidates = []
         other = tu.fx_date(ts, self.other_rule, self.company_tz)
         if other != correct:
             candidates.append(other)
-        earlier = [(date.fromisoformat(correct) - timedelta(days=k)).isoformat() for k in range(1, 8)]
-        self.h.shuffle(earlier)
-        for day in candidates + earlier:
-            if abs(Decimal(self.fx[(cur, day)]) / good - 1) >= Decimal("0.008"):
+        nearby = [(date.fromisoformat(correct) + timedelta(days=k)).isoformat() for k in range(-10, 11) if k]
+        self.h.shuffle(nearby)
+        for day in candidates + nearby:
+            if abs(Decimal(self.fx[(cur, day)]) / good - 1) >= Decimal("0.003"):
                 return day
         return None
 
     def plant_cutoff(self):
-        variant = self.h.choice(["end_late", "end_early", "start_late", "start_early"])
+        wanted = self.cfg["error_modes"]["period_cutoff"]
+        variant = self.h.choice(["end_late", "end_early", "start_late", "start_early"]) if wanted == "random" else wanted
         shift = self.secs
         if variant == "end_late":      # счёт в периоде, проведён после конца
             issued, posted = self.end - shift(3, 40), self.end + shift(3, 60)
@@ -724,7 +740,7 @@ class _Builder:
             affected = sorted(e(k) for k in issue["affected"])
             issues.append({"type": issue["type"], "affected_ids": affected,
                            "expected_amount_minor": issue["expected"], "currency": issue["currency"],
-                           "tolerance_minor": max(1, issue["expected"] // 200),
+                           "tolerance_minor": TOLERANCE[issue["type"]],
                            "evidence_sets": [sorted(e(k) for k in s) for s in issue["evidence"]],
                            "_plant": issue["plant"]})
         issues.sort(key=lambda i: (i["type"], i["affected_ids"]))

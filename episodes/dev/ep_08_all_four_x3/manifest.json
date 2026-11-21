@@ -1,18 +1,18 @@
 {
-  "base_currency": "USD",
+  "base_currency": "EUR",
   "counts": {
-    "documents": 159,
+    "documents": 157,
     "fx_rows": 112,
     "invoices": 104,
-    "ledger_rows": 1122,
-    "payments": 55
+    "ledger_rows": 1117,
+    "payments": 53
   },
   "currency_exponents": {
     "EUR": 2,
-    "KZT": 2,
+    "GBP": 2,
     "USD": 2
   },
-  "episode_id": "ep-f73aba1df1b1",
+  "episode_id": "ep-f675ccc60536",
   "files": [
     "ledger.csv",
     "invoices.jsonl",
@@ -20,12 +20,12 @@
     "fx.csv",
     "policy.json"
   ],
-  "period_end": "2026-06-01T00:00:00+03:00",
-  "period_start": "2026-05-01T00:00:00+03:00",
+  "period_end": "2026-04-01T00:00:00+06:00",
+  "period_start": "2026-03-01T00:00:00+06:00",
   "rounding": {
     "mode": "half_even",
     "unit": "minor units of the target currency"
   },
   "schema_version": "1.0",
-  "timezone": "+03:00"
+  "timezone": "+06:00"
 }

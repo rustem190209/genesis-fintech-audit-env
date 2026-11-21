@@ -1,75 +1,75 @@
 {
-  "episode_id": "ep-b0117a26e260",
+  "episode_id": "ep-9ebd2f8e9fa7",
   "issues": [
     {
       "affected_ids": [
-        "SI-60571",
-        "SI-74120"
+        "BILL-82020",
+        "BILL-87487"
       ],
       "currency": "KZT",
       "evidence_sets": [
         [
-          "DOC-241223",
-          "DOC-865545"
+          "DOC-549847",
+          "DOC-845214"
         ]
       ],
-      "expected_amount_minor": 810108683,
+      "expected_amount_minor": 383608881,
       "issue_id": "ISS-01",
-      "tolerance_minor": 4050543,
+      "tolerance_minor": 0,
       "type": "duplicate_invoice"
     },
     {
       "affected_ids": [
-        "PAY-79306"
+        "P-27070"
       ],
       "currency": "KZT",
       "evidence_sets": [
         [
-          "2026-03-01:JPY:KZT",
-          "DOC-157356",
-          "TX-2163714",
-          "TX-8934955"
+          "2026-07-01:USD:KZT",
+          "DOC-953610",
+          "L-8036419",
+          "L-8139852"
         ]
       ],
-      "expected_amount_minor": 1645458,
+      "expected_amount_minor": 2414072,
       "issue_id": "ISS-02",
-      "tolerance_minor": 8227,
+      "tolerance_minor": 0,
       "type": "fx_error"
     },
     {
       "affected_ids": [
-        "PAY-79306"
+        "P-27070"
       ],
       "currency": "KZT",
       "evidence_sets": [
         [
-          "DOC-157356",
-          "TX-8934955"
+          "DOC-953610",
+          "L-8036419"
         ]
       ],
-      "expected_amount_minor": 41114211,
+      "expected_amount_minor": 285696924,
       "issue_id": "ISS-03",
-      "tolerance_minor": 205571,
+      "tolerance_minor": 0,
       "type": "payment_allocation"
     },
     {
       "affected_ids": [
-        "SI-60571"
+        "BILL-87487"
       ],
       "currency": "KZT",
       "evidence_sets": [
         [
-          "DOC-865545",
-          "TX-2623874"
+          "DOC-549847",
+          "L-3007009"
         ],
         [
-          "DOC-865545",
-          "TX-3271752"
+          "DOC-549847",
+          "L-3230015"
         ]
       ],
-      "expected_amount_minor": 810108683,
+      "expected_amount_minor": 383608881,
       "issue_id": "ISS-04",
-      "tolerance_minor": 4050543,
+      "tolerance_minor": 0,
       "type": "period_cutoff"
     }
   ],

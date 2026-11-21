@@ -151,12 +151,23 @@ def test_amount_tolerance_is_inclusive(truth):
     assert not grade_one(truth, claimed_amount_minor=0)
 
 
-def test_normalisation_and_extra_evidence_are_accepted(truth):
+def test_fields_are_compared_exactly(truth):
+    """Определения жюри: ID, type и currency сравниваются точно, без регистра и обрезки пробелов."""
     issue = one(truth, "period_cutoff")
-    assert grade_one(truth, type=" Period_Cutoff ", currency=issue["currency"].lower(),
-                     affected_ids=[f" {i} " for i in issue["affected_ids"]])
-    assert grade_one(truth, evidence_ids=issue["evidence_sets"][0] + ["extra-1", "extra-2"])
+    assert not grade_one(truth, type=" period_cutoff ")
+    assert not grade_one(truth, type="Period_Cutoff")
+    assert not grade_one(truth, currency=issue["currency"].lower())
+    assert not grade_one(truth, currency=issue["currency"] + " ")
+    assert not grade_one(truth, affected_ids=[f" {i}" for i in issue["affected_ids"]])
+    assert grade_one(truth, affected_ids=issue["affected_ids"] * 3)  # повторы внутри списка: то же множество
+
+
+def test_extra_existing_evidence_is_fine_but_unknown_evidence_is_not(truth):
+    issue = one(truth, "period_cutoff")
+    other = one(truth, "duplicate_invoice")["evidence_sets"][0]  # существующие документы другого счёта
+    assert grade_one(truth, evidence_ids=issue["evidence_sets"][0] + other[:1])
     assert grade_one(truth, evidence_ids=issue["evidence_sets"][0] + issue["evidence_sets"][0])
+    assert not grade_one(truth, evidence_ids=issue["evidence_sets"][0] + ["DOC-does-not-exist"])
 
 
 def test_any_listed_evidence_set_is_enough(truth):
@@ -214,19 +225,17 @@ def structure_cases(truth, episode_id):
     return {
         "not an object": [1, 2],
         "missing episode_id": {"findings": []},
-        "extra top key": {"episode_id": episode_id, "findings": [], "note": "x"},
         "wrong episode_id": {"episode_id": "ep-other", "findings": []},
         "findings not a list": {"episode_id": episode_id, "findings": {}},
         "31 findings": wrap(*[base] * 31),
         "missing key": wrap(drop("currency")),
-        "extra key": wrap({**base, "confidence": 0.9}),
-        "negative amount": wrap({**base, "claimed_amount_minor": -1}),
         "float amount": wrap({**base, "claimed_amount_minor": 10.5}),
         "bool amount": wrap({**base, "claimed_amount_minor": True}),
         "string amount": wrap({**base, "claimed_amount_minor": "10"}),
         "ids not a list": wrap({**base, "affected_ids": "INV-1"}),
-        "empty affected_ids": wrap({**base, "affected_ids": []}),
+        "id not a string": wrap({**base, "evidence_ids": [5]}),
         "11 evidence ids": wrap({**base, "evidence_ids": [f"E{i}" for i in range(11)]}),
+        "11 evidence ids with repeats": wrap({**base, "evidence_ids": ["E1"] * 11}),
         "explanation too long": wrap({**base, "explanation": "x" * 1001}),
         "finding not an object": wrap("text"),
     }
@@ -242,6 +251,21 @@ def test_invalid_structure_ends_the_episode_with_minus_one(truth):
         assert obs["error"]["code"] == "invalid_submission", name
         report = env.final_report()
         assert report["status"] == "invalid" and report["evaluator_log"], name  # ошибка в журнале оценщика
+
+
+@pytest.mark.parametrize("change", [{"claimed_amount_minor": -1}, {"affected_ids": []}, {"type": "unknown_type"},
+                                    {"confidence": 0.9}])
+def test_wrong_but_well_formed_findings_are_false_positives_not_crashes(truth, change):
+    """Определения жюри: структурно верный, но неправильный вывод — FP, а не неверная структура всего submit.
+    Лишние ключи в выводе не делают структуру неверной."""
+    env = AuditEnv()
+    _, info = env.reset(3, FULL)
+    issue = truth["issues"][0]
+    env.step(submit(info["episode_id"], [finding_from_issue(issue, **change)]))
+    report = env.final_report()
+    assert report["status"] == "graded"
+    expected_tp = 1 if "confidence" in change else 0
+    assert (report["tp"], report["fp"]) == (expected_tp, 1 - expected_tp)
 
 
 def test_limits_are_inclusive(truth):

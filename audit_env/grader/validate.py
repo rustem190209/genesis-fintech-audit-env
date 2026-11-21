@@ -11,7 +11,7 @@ from collections import Counter, defaultdict
 
 from .. import money
 from .. import timeutil as tu
-from .matcher import match_findings, validate_submission
+from .matcher import evidence_universe, match_findings, validate_submission
 
 
 def open_data(ep) -> dict:
@@ -222,7 +222,7 @@ def check_truth(ep) -> list:
     if len(ep.truth["issues"]) != len(ep.provenance["changes"]):
         problems.append("provenance.changes does not match truth.issues")
     found = validate_submission({"episode_id": ep.episode_id, "findings": detect(open_data(ep))}, ep.episode_id)
-    result = match_findings(found, ep.truth["issues"])
+    result = match_findings(found, ep.truth["issues"], evidence_universe(open_data(ep)))
     if (result.fp, result.fn) != (0, 0):
         problems.append(f"independent detector disagrees with truth: FP={result.fp} FN={result.fn}")
     return problems

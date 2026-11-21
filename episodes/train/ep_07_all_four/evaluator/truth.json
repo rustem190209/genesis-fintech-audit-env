@@ -1,74 +1,74 @@
 {
-  "episode_id": "ep-1681a138e0d8",
+  "episode_id": "ep-2dc58fa37a93",
   "issues": [
     {
       "affected_ids": [
-        "INV-35797",
-        "INV-49392"
+        "SI-26853",
+        "SI-45843"
       ],
       "currency": "EUR",
       "evidence_sets": [
         [
-          "D-693209",
-          "D-835708"
+          "D-105879",
+          "D-459889"
         ]
       ],
-      "expected_amount_minor": 1661232,
+      "expected_amount_minor": 652946,
       "issue_id": "ISS-01",
-      "tolerance_minor": 8306,
+      "tolerance_minor": 0,
       "type": "duplicate_invoice"
     },
     {
       "affected_ids": [
-        "PAY-15063"
+        "P-79097"
       ],
-      "currency": "USD",
+      "currency": "EUR",
       "evidence_sets": [
         [
-          "2026-04-21:KZT:USD",
-          "D-611012",
-          "JE-2239145"
+          "2026-06-15:USD:EUR",
+          "D-553492",
+          "JE-1769852"
         ]
       ],
-      "expected_amount_minor": 30767,
+      "expected_amount_minor": 40835,
       "issue_id": "ISS-02",
-      "tolerance_minor": 153,
+      "tolerance_minor": 0,
       "type": "fx_error"
     },
     {
       "affected_ids": [
-        "PAY-28726"
-      ],
-      "currency": "KZT",
-      "evidence_sets": [
-        [
-          "D-191005",
-          "JE-8633998"
-        ]
-      ],
-      "expected_amount_minor": 151490793,
-      "issue_id": "ISS-03",
-      "tolerance_minor": 757453,
-      "type": "payment_allocation"
-    },
-    {
-      "affected_ids": [
-        "INV-60976"
+        "P-16940"
       ],
       "currency": "USD",
       "evidence_sets": [
         [
-          "D-992478",
-          "JE-2754976"
-        ],
-        [
-          "D-992478",
-          "JE-5298073"
+          "D-828016",
+          "JE-2043002"
         ]
       ],
-      "expected_amount_minor": 612659,
+      "expected_amount_minor": 972089,
+      "issue_id": "ISS-03",
+      "tolerance_minor": 0,
+      "type": "payment_allocation"
+    },
+    {
+      "affected_ids": [
+        "SI-88096"
+      ],
+      "currency": "EUR",
+      "evidence_sets": [
+        [
+          "D-991576",
+          "JE-7581936"
+        ],
+        [
+          "D-991576",
+          "JE-7571006"
+        ]
+      ],
+      "expected_amount_minor": 941866,
       "issue_id": "ISS-04",
-      "tolerance_minor": 3063,
+      "tolerance_minor": 0,
       "type": "period_cutoff"
     }
   ],
